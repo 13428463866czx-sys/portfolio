@@ -39,15 +39,26 @@ body {
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     max-width: 1400px;
     margin: 0 auto;
+    gap: 40px;
+}
+
+.logo {
+    margin-left: auto;
+    order: 2;
 }
 
 .logo img {
-    height: 40px;
+    height: 60px;
     width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+    transform: scale(1.05);
 }
 
 .nav-links {
