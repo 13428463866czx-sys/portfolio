@@ -1,0 +1,325 @@
+/* 静态作品页面样式 */
+
+/* 系列网格 */
+.series-grid-section {
+    padding: 60px 40px;
+}
+
+.series-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+/* 系列卡片 */
+.series-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--dark-gray);
+}
+
+.series-cover {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+}
+
+.series-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    background: linear-gradient(135deg, rgba(0, 255, 208, 0.1), rgba(255, 0, 160, 0.1));
+}
+
+.series-card:hover .series-cover img {
+    transform: scale(1.05);
+}
+
+.series-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.series-card:hover .series-overlay {
+    opacity: 1;
+}
+
+.series-count {
+    background: linear-gradient(135deg, var(--cyan), var(--magenta));
+    color: var(--black);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.series-info {
+    padding: 15px;
+}
+
+.series-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--white);
+}
+
+.series-desc {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.series-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 255, 208, 0.15);
+}
+
+/* 系列展开面板 */
+.series-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: none;
+    overflow-y: auto;
+}
+
+.series-panel.active {
+    display: block;
+}
+
+.panel-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.panel-content {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 40px 60px;
+    z-index: 2001;
+}
+
+.panel-close {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    font-size: 28px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2002;
+    transition: all 0.3s ease;
+}
+
+.panel-close:hover {
+    background: var(--magenta);
+    border-color: var(--magenta);
+}
+
+.panel-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.panel-header h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--cyan), var(--magenta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.panel-header p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* 画廊网格 */
+.panel-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    background: var(--dark-gray);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* 大图查看器 */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.95);
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    font-size: 28px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.lightbox-close:hover {
+    background: var(--magenta);
+    border-color: var(--magenta);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.lightbox-nav:hover {
+    background: var(--cyan);
+    border-color: var(--cyan);
+    color: var(--black);
+}
+
+.lightbox-prev {
+    left: 30px;
+}
+
+.lightbox-next {
+    right: 30px;
+}
+
+/* 响应式 */
+@media (max-width: 1200px) {
+    .series-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .panel-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .series-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .series-grid-section {
+        padding: 40px 20px;
+    }
+
+    .series-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .panel-content {
+        padding: 60px 20px 40px;
+    }
+
+    .panel-gallery {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .panel-close {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .lightbox-nav {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .lightbox-prev {
+        left: 10px;
+    }
+
+    .lightbox-next {
+        right: 10px;
+    }
+}
+
+/* 隐藏类 */
+.hidden {
+    display: none !important;
+}

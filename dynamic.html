@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态作品 - KSCMerror</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/subpage.css">
+</head>
+<body class="subpage">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="KSCMerror">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">返回首页</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title">动态作品</h1>
+            
+            <!-- 筛选标签 -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">全部</button>
+                <button class="filter-tab" data-filter="edit">剪辑</button>
+                <button class="filter-tab" data-filter="motion">动效</button>
+                <button class="filter-tab" data-filter="3d">3D</button>
+                <button class="filter-tab" data-filter="ai">AI生成</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 视频网格 -->
+    <section class="video-grid-section">
+        <div class="container">
+            <div class="video-grid" id="videoGrid">
+                <!-- 视频卡片 1 -->
+                <div class="video-card" data-category="edit" data-video="https://example.com/video1.mp4" data-title="作品标题1" data-desc="这是作品描述">
+                    <div class="video-thumbnail">
+                        <img src="images/video-cover-1.jpg" alt="作品1">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <span class="video-duration">02:34</span>
+                    </div>
+                    <div class="video-info-card">
+                        <h3 class="video-title">作品标题1</h3>
+                        <p class="video-desc">剪辑 / 商业广告</p>
+                    </div>
+                </div>
+
+                <!-- 视频卡片 2 -->
+                <div class="video-card" data-category="motion" data-video="https://example.com/video2.mp4" data-title="作品标题2" data-desc="动效设计作品">
+                    <div class="video-thumbnail">
+                        <img src="images/video-cover-2.jpg" alt="作品2">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <span class="video-duration">01:45</span>
+                    </div>
+                    <div class="video-info-card">
+                        <h3 class="video-title">作品标题2</h3>
+                        <p class="video-desc">动效 / 品牌视觉</p>
+                    </div>
+                </div>
+
+                <!-- 视频卡片 3 -->
+                <div class="video-card" data-category="3d" data-video="https://example.com/video3.mp4" data-title="作品标题3" data-desc="3D渲染作品">
+                    <div class="video-thumbnail">
+                        <img src="images/video-cover-3.jpg" alt="作品3">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <span class="video-duration">03:12</span>
+                    </div>
+                    <div class="video-info-card">
+                        <h3 class="video-title">作品标题3</h3>
+                        <p class="video-desc">3D / 产品展示</p>
+                    </div>
+                </div>
+
+                <!-- 视频卡片 4 -->
+                <div class="video-card" data-category="ai" data-video="https://example.com/video4.mp4" data-title="作品标题4" data-desc="AI辅助创作">
+                    <div class="video-thumbnail">
+                        <img src="images/video-cover-4.jpg" alt="作品4">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <span class="video-duration">02:08</span>
+                    </div>
+                    <div class="video-info-card">
+                        <h3 class="video-title">作品标题4</h3>
+                        <p class="video-desc">AI生成 / 实验影像</p>
+                    </div>
+                </div>
+
+                <!-- 视频卡片 5 -->
+                <div class="video-card" data-category="edit" data-video="https://example.com/video5.mp4" data-title="作品标题5" data-desc="剪辑作品">
+                    <div class="video-thumbnail">
+                        <img src="images/video-cover-5.jpg" alt="作品5">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <span class="video-duration">04:20</span>
+                    </div>
+                    <div class="video-info-card">
+                        <h3 class="video-title">作品标题5</h3>
+                        <p class="video-desc">剪辑 / 纪录片</p>
+                    </div>
+                </div>
+
+                <!-- 视频卡片 6 -->
+                <div class="video-card" data-category="motion" data-video="https://example.com/video6.mp4" data-title="作品标题6" data-desc="动效作品">
+                    <div class="video-thumbnail">
+                        <img src="images/video-cover-6.jpg" alt="作品6">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <span class="video-duration">01:30</span>
+                    </div>
+                    <div class="video-info-card">
+                        <h3 class="video-title">作品标题6</h3>
+                        <p class="video-desc">动效 / UI动画</p>
+                    </div>
+                </div>
+
+                <!-- 视频卡片 7 -->
+                <div class="video-card" data-category="3d" data-video="https://example.com/video7.mp4" data-title="作品标题7" data-desc="3D作品">
+                    <div class="video-thumbnail">
+                        <img src="images/video-cover-7.jpg" alt="作品7">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <span class="video-duration">02:55</span>
+                    </div>
+                    <div class="video-info-card">
+                        <h3 class="video-title">作品标题7</h3>
+                        <p class="video-desc">3D / 场景渲染</p>
+                    </div>
+                </div>
+
+                <!-- 视频卡片 8 -->
+                <div class="video-card" data-category="ai" data-video="https://example.com/video8.mp4" data-title="作品标题8" data-desc="AI作品">
+                    <div class="video-thumbnail">
+                        <img src="images/video-cover-8.jpg" alt="作品8">
+                        <div class="play-overlay">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <span class="video-duration">01:48</span>
+                    </div>
+                    <div class="video-info-card">
+                        <h3 class="video-title">作品标题8</h3>
+                        <p class="video-desc">AI生成 / 概念设计</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分页 -->
+            <div class="pagination" id="pagination">
+                <button class="page-btn prev" disabled>← 上一页</button>
+                <span class="page-numbers">
+                    <button class="page-num active">1</button>
+                    <button class="page-num">2</button>
+                    <button class="page-num">3</button>
+                </span>
+                <button class="page-btn next">下一页 →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 视频弹窗 -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <div class="modal-video-container">
+                <video id="modalVideo" controls>
+                    <source src="" type="video/mp4">
+                </video>
+            </div>
+            <div class="modal-info">
+                <h3 id="modalTitle">作品标题</h3>
+                <p id="modalDesc">作品描述</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 KSCMerror. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/subpage.js"></script>
+</body>
+</html>

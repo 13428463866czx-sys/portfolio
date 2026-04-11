@@ -1,0 +1,19 @@
+# 视频文件（太大，走阿里云OSS）
+video/
+*.mp4
+*.mov
+*.avi
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 临时文件
+*.tmp
+*.temp
