@@ -21,6 +21,223 @@ body {
     overflow-x: hidden;
 }
 
+/* 页面转场 - 数字失真效果 */
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* 页面进入动画 - 从失真中恢复 */
+.page-content {
+    animation: page-enter-glitch 0.5s steps(6) forwards;
+}
+
+@keyframes page-enter-glitch {
+    0% {
+        opacity: 0;
+        filter: hue-rotate(90deg) saturate(8) contrast(4) brightness(2);
+    }
+    16% {
+        opacity: 0.15;
+        filter: hue-rotate(60deg) saturate(6) contrast(3);
+    }
+    33% {
+        opacity: 0.4;
+        filter: hue-rotate(30deg) saturate(4) contrast(2);
+    }
+    50% {
+        opacity: 0.65;
+        filter: hue-rotate(-20deg) saturate(3) contrast(1.5);
+    }
+    66% {
+        opacity: 0.85;
+        filter: hue-rotate(10deg) saturate(2) contrast(1.2);
+    }
+    83% {
+        opacity: 0.95;
+        filter: hue-rotate(-5deg) saturate(1.5);
+    }
+    100% {
+        opacity: 1;
+        filter: none;
+    }
+}
+
+/* 页面故障化类 - 失真离开 */
+body.glitching {
+    overflow: hidden;
+}
+
+body.glitching .page-content {
+    animation: content-glitch-out 0.4s steps(6) forwards;
+}
+
+@keyframes content-glitch-out {
+    0% {
+        filter: none;
+    }
+    16% {
+        filter: hue-rotate(20deg) saturate(2) contrast(1.3);
+    }
+    33% {
+        filter: hue-rotate(-30deg) saturate(3.5) contrast(1.8) brightness(1.2);
+    }
+    50% {
+        filter: hue-rotate(45deg) saturate(5) contrast(2.5) brightness(1.5);
+    }
+    66% {
+        filter: hue-rotate(-60deg) saturate(7) contrast(3.5) brightness(2);
+        opacity: 0.7;
+    }
+    83% {
+        filter: hue-rotate(75deg) saturate(10) contrast(5) brightness(2.5);
+        opacity: 0.4;
+    }
+    100% {
+        filter: hue-rotate(90deg) saturate(15) contrast(8) brightness(3);
+        opacity: 0;
+    }
+}
+
+/* RGB分离叠加层 */
+.page-transition .rgb-split {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 9998;
+}
+
+.page-transition.active .rgb-split {
+    animation: rgb-overlay 0.5s ease-out forwards;
+}
+
+.page-transition .rgb-split::before,
+.page-transition .rgb-split::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: screen;
+}
+
+.page-transition .rgb-split::before {
+    background: rgba(0, 255, 208, 0.3);
+    animation: cyan-shift 0.5s ease-out forwards;
+}
+
+.page-transition .rgb-split::after {
+    background: rgba(255, 0, 160, 0.3);
+    animation: magenta-shift 0.5s ease-out forwards;
+}
+
+@keyframes rgb-overlay {
+    0% { opacity: 0; }
+    30% { opacity: 0.6; }
+    60% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+@keyframes cyan-shift {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-30px); }
+    100% { transform: translateX(-60px); }
+}
+
+@keyframes magenta-shift {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(30px); }
+    100% { transform: translateX(60px); }
+}
+
+/* 画面撕裂线 */
+.page-transition .tear-lines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0;
+}
+
+.page-transition.active .tear-lines {
+    animation: tear-flicker 0.5s ease-out forwards;
+}
+
+.tear-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), transparent);
+    opacity: 0;
+}
+
+.page-transition.active .tear-line:nth-child(1) { top: 20%; animation: tear-slide 0.3s ease-out 0.1s forwards; }
+.page-transition.active .tear-line:nth-child(2) { top: 45%; animation: tear-slide 0.3s ease-out 0.2s forwards; }
+.page-transition.active .tear-line:nth-child(3) { top: 70%; animation: tear-slide 0.3s ease-out 0.15s forwards; }
+.page-transition.active .tear-line:nth-child(4) { top: 35%; animation: tear-slide 0.3s ease-out 0.25s forwards; }
+.page-transition.active .tear-line:nth-child(5) { top: 85%; animation: tear-slide 0.3s ease-out 0.3s forwards; }
+
+@keyframes tear-flicker {
+    0%, 100% { opacity: 0; }
+    20%, 80% { opacity: 1; }
+}
+
+@keyframes tear-slide {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* 闪烁遮罩 */
+.page-transition .flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    opacity: 0;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.page-transition.active .flash {
+    animation: flash-flicker 0.5s ease-out forwards;
+}
+
+@keyframes flash-flicker {
+    0%, 100% { opacity: 0; }
+    40% { opacity: 0; }
+    45% { opacity: 0.8; }
+    50% { opacity: 0; }
+    70% { opacity: 0.4; }
+    75% { opacity: 0; }
+    90% { opacity: 0.2; }
+}
+
 /* 导航栏 */
 .navbar {
     position: fixed;
@@ -57,17 +274,174 @@ body {
     align-items: center;
 }
 
-.logo img {
-    height: 40px;
-    width: auto;
-    filter: drop-shadow(0 0 8px rgba(0, 255, 208, 0.8)) brightness(1.2);
-    transition: all 0.3s ease;
-    display: block;
+.logo {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    overflow: hidden;
 }
 
-.logo:hover img {
-    filter: drop-shadow(0 0 15px rgba(0, 255, 208, 1)) brightness(1.4);
-    transform: scale(1.05);
+.logo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 故障艺术 Logo 效果 */
+.logo img:nth-child(1) {
+    z-index: 3;
+    animation: logo-glitch-main 3s infinite;
+}
+
+.logo img:nth-child(2) {
+    z-index: 2;
+    opacity: 0;
+    animation: logo-glitch-cyan 3s infinite;
+}
+
+.logo img:nth-child(3) {
+    z-index: 1;
+    opacity: 0;
+    animation: logo-glitch-magenta 3s infinite;
+}
+
+/* 悬停时故障效果增强 */
+.logo:hover img:nth-child(1) {
+    animation: logo-glitch-main-hover 0.8s infinite;
+}
+
+.logo:hover img:nth-child(2) {
+    animation: logo-glitch-cyan-hover 0.8s infinite;
+}
+
+.logo:hover img:nth-child(3) {
+    animation: logo-glitch-magenta-hover 0.8s infinite;
+}
+
+/* 主层 - 间歇性故障 */
+@keyframes logo-glitch-main {
+    0%, 40%, 45%, 50%, 55%, 60%, 100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+    42% {
+        opacity: 0.8;
+        transform: translate(-2px, 1px);
+    }
+    52% {
+        opacity: 0.9;
+        transform: translate(2px, -1px);
+    }
+    58% {
+        opacity: 0.7;
+        transform: translate(-1px, 0);
+    }
+}
+
+/* 青色偏移层 */
+@keyframes logo-glitch-cyan {
+    0%, 40%, 100% {
+        opacity: 0;
+        transform: translate(0);
+    }
+    42%, 44% {
+        opacity: 0.8;
+        transform: translate(-3px, 0);
+    }
+    52%, 54% {
+        opacity: 0.6;
+        transform: translate(-2px, 1px);
+    }
+}
+
+/* 品红色偏移层 */
+@keyframes logo-glitch-magenta {
+    0%, 40%, 100% {
+        opacity: 0;
+        transform: translate(0);
+    }
+    42%, 44% {
+        opacity: 0.8;
+        transform: translate(3px, 0);
+    }
+    52%, 54% {
+        opacity: 0.6;
+        transform: translate(2px, -1px);
+    }
+}
+
+/* 悬停时强烈故障效果 */
+@keyframes logo-glitch-main-hover {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        opacity: 1;
+        transform: translate(0);
+        clip-path: none;
+    }
+    10% {
+        opacity: 0.8;
+        transform: translate(-3px, 2px);
+        clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+    }
+    15% {
+        opacity: 0.9;
+        transform: translate(3px, -2px);
+        clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+    }
+    30% {
+        opacity: 0.7;
+        transform: translate(-2px, 0);
+    }
+    35% {
+        opacity: 0.5;
+        transform: translate(0, 2px);
+        clip-path: polygon(0 0, 100% 0, 100% 30%, 0 30%);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(2px, -1px);
+        clip-path: polygon(0 70%, 100% 70%, 100% 100%, 0 100%);
+    }
+    70% {
+        opacity: 0.6;
+        transform: translate(-1px, 1px);
+    }
+    90% {
+        opacity: 0.4;
+        transform: translate(1px, -1px);
+    }
+}
+
+@keyframes logo-glitch-cyan-hover {
+    0%, 25%, 50%, 75%, 100% {
+        opacity: 0;
+        transform: translate(0);
+    }
+    10%, 15%, 35%, 40% {
+        opacity: 0.9;
+        transform: translate(-4px, 0);
+    }
+    60%, 65%, 85%, 90% {
+        opacity: 0.7;
+        transform: translate(-3px, 1px);
+    }
+}
+
+@keyframes logo-glitch-magenta-hover {
+    0%, 25%, 50%, 75%, 100% {
+        opacity: 0;
+        transform: translate(0);
+    }
+    10%, 15%, 35%, 40% {
+        opacity: 0.9;
+        transform: translate(4px, 0);
+    }
+    60%, 65%, 85%, 90% {
+        opacity: 0.7;
+        transform: translate(3px, -1px);
+    }
 }
 
 .nav-links {
@@ -555,6 +929,25 @@ body {
     display: flex;
     justify-content: flex-end;
     margin-top: 30px;
+}
+
+/* 内容保护 - 禁止选择图片 */
+img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* 禁止在图片和视频上右键 */
+.video-thumbnail,
+.gallery-item,
+.carousel-video {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* 响应式 */

@@ -3,7 +3,39 @@ document.addEventListener('DOMContentLoaded', function() {
     initVideoModal();
     initFilterTabs();
     initPagination();
+    initPageTransition();
 });
+
+// 页面转场功能
+function initPageTransition() {
+    const transition = document.querySelector('.page-transition');
+    const navLinks = document.querySelectorAll('.nav-links a, .logo');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // 如果是当前页面，不执行转场
+            if (href === window.location.pathname.split('/').pop() || 
+                (href === 'index.html' && window.location.pathname.endsWith('/'))) {
+                return;
+            }
+            
+            e.preventDefault();
+            
+            // 添加转场类
+            document.body.classList.add('glitching');
+            if (transition) {
+                transition.classList.add('active');
+            }
+            
+            // 延迟跳转
+            setTimeout(() => {
+                window.location.href = href;
+            }, 400);
+        });
+    });
+}
 
 // 视频弹窗功能
 function initVideoModal() {

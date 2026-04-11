@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // 初始化页面转场
+    initPageTransition();
+
     // 副标题点击播放/暂停背景视频
     initHeroSubtitle();
     
@@ -37,7 +40,45 @@ document.addEventListener('DOMContentLoaded', function() {
     initVideoModal();
     initSeriesPanel();
     initFilterTabs();
+    
+    // 启用内容保护
+    initContentProtection();
 });
+
+// 页面转场效果
+function initPageTransition() {
+    // 为所有导航链接添加转场效果
+    document.querySelectorAll('.nav-links a[href$=".html"], .logo[href$=".html"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetUrl = this.getAttribute('href');
+            const transition = document.querySelector('.page-transition');
+            const body = document.body;
+            
+            // 排除当前页
+            if (targetUrl === window.location.pathname.split('/').pop()) {
+                return;
+            }
+            
+            if (transition) {
+                // 给body添加故障类，让整个页面内容故障化
+                body.classList.add('glitching');
+                
+                // 激活转场遮罩
+                setTimeout(() => {
+                    transition.classList.add('active');
+                }, 200);
+                
+                // 动画结束后跳转
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 700);
+            } else {
+                window.location.href = targetUrl;
+            }
+        });
+    });
+}
 
 // 副标题点击弹出视频弹窗
 function initHeroSubtitle() {
@@ -292,4 +333,26 @@ function initFilterTabs() {
             });
         });
     });
+}
+
+// 内容保护 - 禁用右键、拖拽、选择
+function initContentProtection() {
+    // 禁用右键菜单
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG' || e.target.closest('.video-thumbnail') || e.target.closest('.gallery-item')) {
+            e.preventDefault();
+        }
+    });
+    
+    // 禁用图片拖拽
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+        }
+    });
+    
+    // 禁用复制（可选，可能会影响体验）
+    // document.addEventListener('copy', function(e) {
+    //     e.preventDefault();
+    // });
 }
