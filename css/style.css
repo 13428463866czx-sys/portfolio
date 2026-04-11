@@ -46,24 +46,29 @@ body {
     gap: 40px;
 }
 
-.logo {
-    margin-left: auto;
-}
 
-.logo img {
-    height: 60px;
-    width: auto;
-    transition: transform 0.3s ease;
-}
-
-.logo:hover img {
-    transform: scale(1.05);
-}
 
 .nav-links {
     display: flex;
     list-style: none;
     gap: 40px;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-logo {
+    margin-left: auto;
+}
+
+.nav-logo img {
+    height: 50px;
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo:hover img {
+    transform: scale(1.05);
 }
 
 .nav-links a {
