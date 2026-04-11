@@ -15,10 +15,24 @@
     font-size: clamp(32px, 5vw, 48px);
     font-weight: 700;
     margin-bottom: 30px;
+    letter-spacing: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.page-title .title-en {
     background: linear-gradient(135deg, var(--cyan), var(--magenta));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: 3px;
+    background-clip: text;
+}
+
+.page-title .title-cn {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
 }
 
 /* 筛选标签 */

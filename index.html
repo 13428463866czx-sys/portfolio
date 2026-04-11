@@ -10,14 +10,16 @@
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="dynamic.html">动态</a></li>
-                <li><a href="static.html">静态</a></li>
-                <li><a href="#others">其它</a></li>
-                <li class="nav-logo"><a href="index.html" title="返回首页">
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="dynamic.html">动态</a></li>
+                    <li><a href="static.html">静态</a></li>
+                    <li><a href="about.html">关于</a></li>
+                </ul>
+                <a href="index.html" class="logo">
                     <img src="images/logo.png" alt="KSCMerror">
-                </a></li>
-            </ul>
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -25,13 +27,19 @@
     <section class="hero">
         <div class="video-container">
             <video autoplay muted loop playsinline class="bg-video">
-                <source src="video/showreel26.mp4" type="video/mp4">
+                <source src="video/showreel-placeholder.mp4" type="video/mp4">
             </video>
             <div class="video-overlay"></div>
         </div>
         <div class="hero-content">
-            <h1 class="hero-title">SHOWREEL 26 VIA KSCMERROR</h1>
-            <p class="hero-subtitle">一分钟了解我的视觉风格</p>
+            <h1 class="hero-title" data-text="SHOWREEL 26 VIA KSCMERROR">SHOWREEL 26 VIA KSCMERROR</h1>
+            <p class="hero-subtitle">
+                <svg class="play-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M10 8L16 12L10 16V8Z" fill="currentColor"/>
+                </svg>
+                一分钟了解我的视觉风格
+            </p>
         </div>
         <div class="scroll-indicator">
             <span class="scroll-text">向下滚动</span>
@@ -40,56 +48,85 @@
     </section>
 
     <!-- 动态作品区域 -->
-    <section id="dynamic" class="section">
+    <section id="dynamic" class="section section-featured">
         <div class="container">
-            <h2 class="section-title">动态作品</h2>
+            <div class="section-header">
+                <h2 class="section-title">动态作品</h2>
+            </div>
             
-            <!-- 主视频播放区 -->
-            <div class="video-showcase">
-                <div class="main-video-container">
-                    <video id="mainVideo" class="main-video" controls poster="images/video-cover-1.jpg">
-                        <source src="https://your-bucket.oss-cn-hangzhou.aliyuncs.com/video1.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-info">
-                        <h3 id="videoTitle">作品标题 1</h3>
-                        <p id="videoDesc">作品描述文字...</p>
+            <!-- 视频轮播 -->
+            <div class="video-carousel">
+                <!-- 主视频区 -->
+                <div class="carousel-main">
+                    <div class="carousel-video active" data-video="https://example.com/video1.mp4" data-title="城市霓虹" data-desc="赛博朋克风格城市夜景剪辑">
+                        <img src="images/video-cover-1.jpg" alt="城市霓虹">
+                        <div class="play-overlay">
+                            <div class="play-icon-large">▶</div>
+                        </div>
+                        <span class="video-duration">02:34</span>
+                        <div class="video-info">
+                            <h3>城市霓虹</h3>
+                            <p>赛博朋克风格城市夜景剪辑</p>
+                        </div>
+                    </div>
+                    <div class="carousel-video" data-video="https://example.com/video2.mp4" data-title="品牌动效" data-desc="商业品牌动态视觉设计">
+                        <img src="images/video-cover-2.jpg" alt="品牌动效">
+                        <div class="play-overlay">
+                            <div class="play-icon-large">▶</div>
+                        </div>
+                        <span class="video-duration">01:45</span>
+                        <div class="video-info">
+                            <h3>品牌动效</h3>
+                            <p>商业品牌动态视觉设计</p>
+                        </div>
+                    </div>
+                    <div class="carousel-video" data-video="https://example.com/video3.mp4" data-title="3D产品展示" data-desc="产品渲染与动态展示">
+                        <img src="images/video-cover-3.jpg" alt="3D产品展示">
+                        <div class="play-overlay">
+                            <div class="play-icon-large">▶</div>
+                        </div>
+                        <span class="video-duration">03:12</span>
+                        <div class="video-info">
+                            <h3>3D产品展示</h3>
+                            <p>产品渲染与动态展示</p>
+                        </div>
+                    </div>
+                    <div class="carousel-video" data-video="https://example.com/video4.mp4" data-title="AI实验影像" data-desc="AI辅助创作的实验性视觉作品">
+                        <img src="images/video-cover-4.jpg" alt="AI实验影像">
+                        <div class="play-overlay">
+                            <div class="play-icon-large">▶</div>
+                        </div>
+                        <span class="video-duration">02:08</span>
+                        <div class="video-info">
+                            <h3>AI实验影像</h3>
+                            <p>AI辅助创作的实验性视觉作品</p>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- 缩略图选择条 -->
-                <div class="thumbnail-strip">
-                    <div class="thumbnail-item active" data-index="0" data-video="https://your-bucket.oss-cn-hangzhou.aliyuncs.com/video1.mp4" data-title="作品标题 1" data-desc="作品描述文字..." data-cover="images/video-cover-1.jpg">
-                        <img src="images/video-cover-1.jpg" alt="作品1">
-                        <span class="thumbnail-title">作品 1</span>
+                <!-- 缩略图导航 -->
+                <div class="carousel-thumbs">
+                    <div class="thumb active" data-index="0">
+                        <img src="images/video-cover-1.jpg" alt="城市霓虹">
+                        <span class="thumb-title">城市霓虹</span>
                     </div>
-                    <div class="thumbnail-item" data-index="1" data-video="https://your-bucket.oss-cn-hangzhou.aliyuncs.com/video2.mp4" data-title="作品标题 2" data-desc="作品描述文字..." data-cover="images/video-cover-2.jpg">
-                        <img src="images/video-cover-2.jpg" alt="作品2">
-                        <span class="thumbnail-title">作品 2</span>
+                    <div class="thumb" data-index="1">
+                        <img src="images/video-cover-2.jpg" alt="品牌动效">
+                        <span class="thumb-title">品牌动效</span>
                     </div>
-                    <div class="thumbnail-item" data-index="2" data-video="https://your-bucket.oss-cn-hangzhou.aliyuncs.com/video3.mp4" data-title="作品标题 3" data-desc="作品描述文字..." data-cover="images/video-cover-3.jpg">
-                        <img src="images/video-cover-3.jpg" alt="作品3">
-                        <span class="thumbnail-title">作品 3</span>
+                    <div class="thumb" data-index="2">
+                        <img src="images/video-cover-3.jpg" alt="3D产品展示">
+                        <span class="thumb-title">3D产品展示</span>
                     </div>
-                    <div class="thumbnail-item" data-index="3" data-video="https://your-bucket.oss-cn-hangzhou.aliyuncs.com/video4.mp4" data-title="作品标题 4" data-desc="作品描述文字..." data-cover="images/video-cover-4.jpg">
-                        <img src="images/video-cover-4.jpg" alt="作品4">
-                        <span class="thumbnail-title">作品 4</span>
+                    <div class="thumb" data-index="3">
+                        <img src="images/video-cover-4.jpg" alt="AI实验影像">
+                        <span class="thumb-title">AI实验影像</span>
                     </div>
-                    <div class="thumbnail-item" data-index="4" data-video="https://your-bucket.oss-cn-hangzhou.aliyuncs.com/video5.mp4" data-title="作品标题 5" data-desc="作品描述文字..." data-cover="images/video-cover-5.jpg">
-                        <img src="images/video-cover-5.jpg" alt="作品5">
-                        <span class="thumbnail-title">作品 5</span>
-                    </div>
-                    <div class="thumbnail-item" data-index="5" data-video="https://your-bucket.oss-cn-hangzhou.aliyuncs.com/video6.mp4" data-title="作品标题 6" data-desc="作品描述文字..." data-cover="images/video-cover-6.jpg">
-                        <img src="images/video-cover-6.jpg" alt="作品6">
-                        <span class="thumbnail-title">作品 6</span>
-                    </div>
-                    <div class="thumbnail-item" data-index="6" data-video="https://your-bucket.oss-cn-hangzhou.aliyuncs.com/video7.mp4" data-title="作品标题 7" data-desc="作品描述文字..." data-cover="images/video-cover-7.jpg">
-                        <img src="images/video-cover-7.jpg" alt="作品7">
-                        <span class="thumbnail-title">作品 7</span>
-                    </div>
-                    <div class="thumbnail-item" data-index="7" data-video="https://your-bucket.oss-cn-hangzhou.aliyuncs.com/video8.mp4" data-title="作品标题 8" data-desc="作品描述文字..." data-cover="images/video-cover-8.jpg">
-                        <img src="images/video-cover-8.jpg" alt="作品8">
-                        <span class="thumbnail-title">作品 8</span>
-                    </div>
+                </div>
+                
+                <!-- 查看更多 -->
+                <div class="carousel-footer">
+                    <a href="dynamic.html" class="view-more">查看更多 →</a>
                 </div>
             </div>
         </div>
@@ -98,37 +135,140 @@
     <!-- 静态作品区域 -->
     <section id="static" class="section section-dark">
         <div class="container">
-            <h2 class="section-title">静态作品</h2>
-            <div class="works-grid">
-                <div class="work-item">
-                    <div class="work-placeholder">摄影 1</div>
+            <div class="section-header">
+                <h2 class="section-title">静态作品</h2>
+            </div>
+            
+            <!-- 精选图片瀑布流展示 -->
+            <div class="gallery-masonry">
+                <div class="gallery-item large" data-series="city-night">
+                    <img src="images/series/city-night/cover.jpg" alt="城市夜景">
+                    <div class="gallery-overlay">
+                        <h3>城市夜景</h3>
+                        <p>霓虹与建筑的交响曲</p>
+                    </div>
                 </div>
-                <div class="work-item">
-                    <div class="work-placeholder">摄影 2</div>
+                <div class="gallery-item" data-series="cyber-portrait">
+                    <img src="images/series/cyber-portrait/cover.jpg" alt="赛博人像">
+                    <div class="gallery-overlay">
+                        <h3>赛博人像</h3>
+                    </div>
                 </div>
-                <div class="work-item">
-                    <div class="work-placeholder">摄影 3</div>
+                <div class="gallery-item" data-series="product-light">
+                    <img src="images/series/product-light/cover.jpg" alt="产品光影">
+                    <div class="gallery-overlay">
+                        <h3>产品光影</h3>
+                    </div>
+                </div>
+                <div class="gallery-item" data-series="tokyo-street">
+                    <img src="images/series/tokyo-street/cover.jpg" alt="东京街头">
+                    <div class="gallery-overlay">
+                        <h3>东京街头</h3>
+                    </div>
+                </div>
+                <div class="gallery-item" data-series="nature-light">
+                    <img src="images/series/nature-light/cover.jpg" alt="自然光">
+                    <div class="gallery-overlay">
+                        <h3>自然光</h3>
+                    </div>
+                </div>
+                <div class="gallery-item" data-series="studio-light">
+                    <img src="images/series/studio-light/cover.jpg" alt="棚拍人像">
+                    <div class="gallery-overlay">
+                        <h3>棚拍人像</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 查看更多 -->
+            <div class="gallery-footer">
+                <a href="static.html" class="view-more">查看更多 →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 其它/关于区域 -->
+    <section id="others" class="section">
+        <div class="container">
+            <h2 class="section-title">关于</h2>
+            <div class="about-content">
+                <div class="about-main">
+                    <div class="about-text">
+                        <h3>KSCMerror</h3>
+                        <p class="about-role">视觉设计师 / 剪辑师</p>
+                        <p class="about-bio">擅长动态影像与静物摄影，探索AIGC辅助工作流。专注于赛博朋克风格视觉表达，将故障艺术融入商业设计。</p>
+                        <div class="about-skills">
+                            <span class="skill-tag">视频剪辑</span>
+                            <span class="skill-tag">动效设计</span>
+                            <span class="skill-tag">静物摄影</span>
+                            <span class="skill-tag">3D渲染</span>
+                            <span class="skill-tag">AI生成</span>
+                        </div>
+                    </div>
+                    <div class="about-projects">
+                        <div class="project-card">
+                            <h4>莉娜计划</h4>
+                            <p>私人AI伴侣项目，基于Ollama与向量记忆系统。</p>
+                            <a href="#" class="project-link">了解更多 →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-section">
+                    <h3>联系方式</h3>
+                    <div class="contact-links">
+                        <a href="mailto:contact@kscmerror.com" class="contact-item">
+                            <span class="contact-icon">✉</span>
+                            <span>contact@kscmerror.com</span>
+                        </a>
+                        <a href="#" class="contact-item">
+                            <span class="contact-icon">📷</span>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="#" class="contact-item">
+                            <span class="contact-icon">🎬</span>
+                            <span>Bilibili</span>
+                        </a>
+                        <a href="#" class="contact-item">
+                            <span class="contact-icon">💼</span>
+                            <span>Behance</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 其它区域 -->
-    <section id="others" class="section">
-        <div class="container">
-            <h2 class="section-title">其它</h2>
-            <div class="others-content">
-                <div class="about-card">
-                    <h3>关于我</h3>
-                    <p>视觉设计师，擅长动态影像与静物摄影，探索AIGC辅助工作流。</p>
-                </div>
-                <div class="project-card">
-                    <h3>莉娜计划</h3>
-                    <p>私人AI伴侣项目，基于Ollama与向量记忆系统。</p>
-                </div>
+    <!-- 视频弹窗 -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <div class="modal-video-container">
+                <video id="modalVideo" controls>
+                    <source src="" type="video/mp4">
+                </video>
+            </div>
+            <div class="modal-info">
+                <h3 id="modalTitle">作品标题</h3>
+                <p id="modalDesc">作品描述</p>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- 系列展开面板 -->
+    <div class="series-panel" id="seriesPanel">
+        <div class="panel-overlay"></div>
+        <div class="panel-content">
+            <button class="panel-close" id="panelClose">×</button>
+            <div class="panel-header">
+                <h2 id="panelTitle">系列标题</h2>
+                <p id="panelDesc">系列描述</p>
+            </div>
+            <div class="panel-gallery" id="panelGallery">
+                <!-- 图片将通过JS动态插入 -->
+            </div>
+        </div>
+    </div>
 
     <!-- 页脚 -->
     <footer class="footer">
