@@ -39,11 +39,11 @@ body {
 
 .nav-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     max-width: 1400px;
     margin: 0 auto;
-    gap: 40px;
+    padding: 0 40px;
 }
 
 
@@ -57,7 +57,7 @@ body {
 }
 
 .nav-logo {
-    margin-left: auto;
+    margin-left: 40px;
 }
 
 .nav-logo img {
@@ -65,6 +65,9 @@ body {
     width: auto;
     display: block;
     transition: transform 0.3s ease;
+    /* 覆盖 nav-links a 的样式 */
+    text-transform: none;
+    letter-spacing: normal;
 }
 
 .nav-logo:hover img {
