@@ -1,6 +1,7 @@
 # 视频文件（太大，走阿里云OSS）
-video/
-*.mp4
+# 注意：showreel26.mp4 是首页背景视频，已压缩到53MB，可以上传Gitee
+# 其他大视频仍走阿里云OSS
+video/showreel-placeholder.mp4
 *.mov
 *.avi
 
