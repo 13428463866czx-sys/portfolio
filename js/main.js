@@ -217,6 +217,7 @@ function initVideoModal() {
 // 系列展开面板功能
 function initSeriesPanel() {
     const seriesCards = document.querySelectorAll('.series-card');
+    const galleryItems = document.querySelectorAll('.gallery-item');
     const seriesPanel = document.getElementById('seriesPanel');
     const panelTitle = document.getElementById('panelTitle');
     const panelDesc = document.getElementById('panelDesc');
@@ -226,67 +227,145 @@ function initSeriesPanel() {
 
     if (!seriesPanel) return;
 
-    // 模拟系列数据
+    // 系列数据
     const seriesData = {
-        'city-night': {
-            title: '城市夜景',
-            desc: '霓虹与建筑的交响曲',
-            images: Array(12).fill('images/series/city-night/')
+        'brand-collateral': {
+            title: '品牌物料 Brand Collateral',
+            desc: '海报、VI、包装 · 印刷品设计',
+            images: [
+                'images/series/brand-collateral/01_poster.jpg',
+                'images/series/brand-collateral/02_manual_00.jpg',
+                'images/series/brand-collateral/03_manual_01.jpg',
+                'images/series/brand-collateral/04_manual_02.jpg',
+                'images/series/brand-collateral/05_manual_03.jpg',
+                'images/series/brand-collateral/06_manual_04.jpg',
+                'images/series/brand-collateral/07_manual_05.jpg',
+                'images/series/brand-collateral/08_manual_06.jpg',
+                'images/series/brand-collateral/09_langcity_vi.jpg',
+                'images/series/brand-collateral/10_led_packaging.png'
+            ]
         },
-        'cyber-portrait': {
-            title: '赛博人像',
-            desc: '青绿与品红的光影实验',
-            images: Array(8).fill('images/series/cyber-portrait/')
+        'beauty-makeup': {
+            title: '美妆造型 Beauty Makeup',
+            desc: '产品渲染 · 电商',
+            images: [
+                'images/series/beauty-makeup/01.jpg',
+                'images/series/beauty-makeup/02.jpg',
+                'images/series/beauty-makeup/03.jpg',
+                'images/series/beauty-makeup/04.jpg',
+                'images/series/beauty-makeup/05.jpg',
+                'images/series/beauty-makeup/06.jpg',
+                'images/series/beauty-makeup/07.jpg',
+                'images/series/beauty-makeup/08.jpg',
+                'images/series/beauty-makeup/09.jpg',
+                'images/series/beauty-makeup/10.jpg',
+                'images/series/beauty-makeup/11.jpg',
+                'images/series/beauty-makeup/12.jpg',
+                'images/series/beauty-makeup/13.jpg',
+                'images/series/beauty-makeup/14_A2.jpg',
+                'images/series/beauty-makeup/15_A3.jpg',
+                'images/series/beauty-makeup/16_A4.jpg',
+                'images/series/beauty-makeup/17_logo.jpg'
+            ]
         },
-        'product-light': {
-            title: '产品光影',
-            desc: '商业静物摄影集',
-            images: Array(15).fill('images/series/product-light/')
+        'atmosphere-light': {
+            title: '氛围灯 Atmosphere Light',
+            desc: '产品渲染 · 电商',
+            images: [
+                'images/series/atmosphere-light/01.png',
+                'images/series/atmosphere-light/02.png',
+                'images/series/atmosphere-light/03.png',
+                'images/series/atmosphere-light/04.png',
+                'images/series/atmosphere-light/05.png',
+                'images/series/atmosphere-light/06.png',
+                'images/series/atmosphere-light/07.png',
+                'images/series/atmosphere-light/08.png',
+                'images/series/atmosphere-light/09.jpg',
+                'images/series/atmosphere-light/10.jpg',
+                'images/series/atmosphere-light/11.jpg',
+                'images/series/atmosphere-light/12.jpg',
+                'images/series/atmosphere-light/13.jpg',
+                'images/series/atmosphere-light/14.jpg',
+                'images/series/atmosphere-light/15.jpg',
+                'images/series/atmosphere-light/16.jpg',
+                'images/series/atmosphere-light/17.jpg',
+                'images/series/atmosphere-light/18.jpg',
+                'images/series/atmosphere-light/19.jpg',
+                'images/series/atmosphere-light/20.jpg',
+                'images/series/atmosphere-light/21.jpg',
+                'images/series/atmosphere-light/22.jpg',
+                'images/series/atmosphere-light/23.jpg',
+                'images/series/atmosphere-light/24.jpg',
+                'images/series/atmosphere-light/25.jpg'
+            ]
         },
-        'tokyo-street': {
-            title: '东京街头',
-            desc: '赛博朋克圣地巡礼',
-            images: Array(20).fill('images/series/tokyo-street/')
+        'scene-render': {
+            title: '场景渲染 Scene Render',
+            desc: '3D渲染 · 场景',
+            images: [
+                'images/series/scene-render/01.png',
+                'images/series/scene-render/02.png',
+                'images/series/scene-render/03.jpg',
+                'images/series/scene-render/04.jpg',
+                'images/series/scene-render/05.jpg',
+                'images/series/scene-render/06.jpg'
+            ]
         },
-        'nature-light': {
-            title: '自然光',
-            desc: '日出日落的光影记录',
-            images: Array(10).fill('images/series/nature-light/')
+        'tool-set': {
+            title: '工具套装 Tool Set',
+            desc: '产品渲染 · 电商',
+            images: [
+                'images/series/tool-set/01.jpg',
+                'images/series/tool-set/02.jpg',
+                'images/series/tool-set/03.jpg',
+                'images/series/tool-set/04.jpg',
+                'images/series/tool-set/05.jpg'
+            ]
         },
-        'studio-light': {
-            title: '棚拍人像',
-            desc: '专业灯光下的质感',
-            images: Array(6).fill('images/series/studio-light/')
-        },
-        'food-art': {
-            title: '美食艺术',
-            desc: '色彩与食欲的对话',
-            images: Array(18).fill('images/series/food-art/')
-        },
-        'hongkong-night': {
-            title: '香港夜行',
-            desc: '密集城市的呼吸',
-            images: Array(24).fill('images/series/hongkong-night/')
+        'speaker': {
+            title: '音箱 Speaker',
+            desc: '产品摄影 · 静物',
+            images: [
+                'images/series/speaker/01.jpg',
+                'images/series/speaker/02.jpg',
+                'images/series/speaker/03.jpg'
+            ]
         }
     };
 
+    // 处理点击打开面板
+    function openPanel(seriesKey) {
+        const data = seriesData[seriesKey];
+        if (!data) return;
+
+        panelTitle.textContent = data.title;
+        panelDesc.textContent = data.desc;
+        
+        // 生成图片网格
+        panelGallery.innerHTML = data.images.map((src, i) => `
+            <div class="panel-img-item" data-index="${i}">
+                <img src="${src}" alt="${data.title} ${i + 1}">
+            </div>
+        `).join('');
+        
+        console.log('Panel opened:', seriesKey, 'Images:', data.images);
+
+        seriesPanel.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        seriesPanel.scrollTo(0, 0);
+    }
+
+    // 绑定系列卡片点击
     seriesCards.forEach(card => {
         card.addEventListener('click', function() {
-            const seriesKey = this.dataset.series;
-            const data = seriesData[seriesKey];
+            openPanel(this.dataset.series);
+        });
+    });
 
-            if (data) {
-                panelTitle.textContent = data.title;
-                panelDesc.textContent = data.desc;
-                
-                // 生成图片网格
-                panelGallery.innerHTML = data.images.map((_, i) => `
-                    <img src="${seriesKey}/img${i + 1}.jpg" alt="${data.title} ${i + 1}" loading="lazy">
-                `).join('');
-
-                seriesPanel.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
+    // 绑定首页画廊项点击
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+            openPanel(this.dataset.series);
         });
     });
 

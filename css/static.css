@@ -1,5 +1,10 @@
 /* 静态作品页面样式 */
 
+/* 筛选区域 */
+.filter-section {
+    padding-top: 40px;
+}
+
 /* 系列网格 */
 .series-grid-section {
     padding: 60px 40px;
@@ -87,16 +92,27 @@
     box-shadow: 0 10px 30px rgba(0, 255, 208, 0.15);
 }
 
+/* 外部链接卡片 */
+.series-card.external-link {
+    text-decoration: none;
+    display: block;
+}
+
+.series-card.external-link .series-count {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+}
+
 /* 系列展开面板 */
 .series-panel {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     z-index: 2000;
     display: none;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .series-panel.active {
@@ -117,14 +133,14 @@
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 40px 60px;
+    padding: 100px 60px 60px 40px;
     z-index: 2001;
 }
 
 .panel-close {
-    position: fixed;
+    position: absolute;
     top: 20px;
-    right: 30px;
+    right: 20px;
     width: 50px;
     height: 50px;
     background: rgba(255, 255, 255, 0.1);
@@ -145,6 +161,7 @@
 .panel-header {
     text-align: center;
     margin-bottom: 50px;
+    padding-top: 20px;
 }
 
 .panel-header h2 {
@@ -164,16 +181,22 @@
 .panel-gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 25px;
 }
 
 .gallery-item {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    background: var(--dark-gray);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gallery-item .gallery-img-wrap {
     position: relative;
     aspect-ratio: 4/3;
     overflow: hidden;
-    border-radius: 8px;
-    cursor: pointer;
-    background: var(--dark-gray);
 }
 
 .gallery-item img {
@@ -185,6 +208,35 @@
 
 .gallery-item:hover img {
     transform: scale(1.05);
+}
+
+/* 图片说明标签 - 影视飓风风格 */
+.gallery-label {
+    padding: 12px 15px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 500;
+    background: var(--dark-gray);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gallery-label .label-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.gallery-label .label-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    background: rgba(0, 255, 208, 0.1);
+    border-radius: 4px;
+    color: var(--cyan);
+    font-size: 11px;
 }
 
 /* 大图查看器 */
@@ -316,6 +368,83 @@
 
     .lightbox-next {
         right: 10px;
+    }
+}
+
+/* 自定义滚动条 - 系列面板 - 极简风格 */
+.series-panel::-webkit-scrollbar {
+    width: 3px;
+}
+
+.series-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.series-panel::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+}
+
+.series-panel::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Lightbox 动画 - 性能优化 */
+.lightbox {
+    opacity: 0;
+    pointer-events: none;
+    will-change: opacity;
+    transition: opacity 0.25s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-img {
+    transform: scale(0.95);
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: transform 0.3s ease-out, opacity 0.2s ease;
+}
+
+.lightbox.active .lightbox-img {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* 系列面板进入动画 - 性能优化 */
+.series-panel {
+    display: none;
+}
+
+.series-panel.active {
+    display: block;
+    animation: panelFadeIn 0.25s ease;
+}
+
+@keyframes panelFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.panel-content {
+    animation: contentSlideIn 0.3s ease-out;
+}
+
+@keyframes contentSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 

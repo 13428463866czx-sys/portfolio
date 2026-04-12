@@ -20,7 +20,6 @@
         <div class="flash"></div>
     </div>
     
-    <div class="page-content">
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
@@ -39,6 +38,7 @@
         </div>
     </nav>
 
+    <div class="page-content">
     <!-- 首页 Hero 区域 -->
     <section class="hero">
         <div class="video-container">
@@ -152,46 +152,44 @@
     <section id="static" class="section section-dark">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">静态作品</h2>
+                <h2 class="section-title">PORTFOLIO · 静态</h2>
             </div>
             
             <!-- 精选图片瀑布流展示 -->
             <div class="gallery-masonry">
-                <div class="gallery-item large" data-series="city-night">
-                    <img src="images/series/city-night/cover.jpg" alt="城市夜景">
+                <div class="gallery-item large" data-series="brand-collateral">
+                    <img src="images/series/brand-collateral/cover.jpg" alt="品牌物料">
                     <div class="gallery-overlay">
-                        <h3>城市夜景</h3>
-                        <p>霓虹与建筑的交响曲</p>
+                        <h3>品牌物料 Brand Collateral</h3>
+                        <p>海报、VI、包装 · 印刷品设计</p>
                     </div>
                 </div>
-                <div class="gallery-item" data-series="cyber-portrait">
-                    <img src="images/series/cyber-portrait/cover.jpg" alt="赛博人像">
+                <div class="gallery-item" data-series="beauty-makeup">
+                    <img src="images/series/beauty-makeup/cover.jpg" alt="美妆造型">
                     <div class="gallery-overlay">
-                        <h3>赛博人像</h3>
+                        <h3>美妆造型 Beauty Makeup</h3>
+                        <p>产品渲染 · 电商</p>
                     </div>
                 </div>
-                <div class="gallery-item" data-series="product-light">
-                    <img src="images/series/product-light/cover.jpg" alt="产品光影">
+                <div class="gallery-item" data-series="atmosphere-light">
+                    <img src="images/series/atmosphere-light/cover.jpg" alt="氛围灯">
                     <div class="gallery-overlay">
-                        <h3>产品光影</h3>
+                        <h3>氛围灯 Atmosphere Light</h3>
+                        <p>产品渲染 · 电商</p>
                     </div>
                 </div>
-                <div class="gallery-item" data-series="tokyo-street">
-                    <img src="images/series/tokyo-street/cover.jpg" alt="东京街头">
+                <div class="gallery-item" data-series="scene-render">
+                    <img src="images/series/scene-render/cover.jpg" alt="场景渲染">
                     <div class="gallery-overlay">
-                        <h3>东京街头</h3>
+                        <h3>场景渲染 Scene Render</h3>
+                        <p>3D渲染 · 场景</p>
                     </div>
                 </div>
-                <div class="gallery-item" data-series="nature-light">
-                    <img src="images/series/nature-light/cover.jpg" alt="自然光">
+                <div class="gallery-item" data-series="tool-set">
+                    <img src="images/series/tool-set/cover.jpg" alt="工具套装">
                     <div class="gallery-overlay">
-                        <h3>自然光</h3>
-                    </div>
-                </div>
-                <div class="gallery-item" data-series="studio-light">
-                    <img src="images/series/studio-light/cover.jpg" alt="棚拍人像">
-                    <div class="gallery-overlay">
-                        <h3>棚拍人像</h3>
+                        <h3>工具套装 Tool Set</h3>
+                        <p>产品渲染 · 电商</p>
                     </div>
                 </div>
             </div>
@@ -254,7 +252,16 @@
         </div>
     </section>
 
-    <!-- 视频弹窗 -->
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 KSCMerror. All rights reserved.</p>
+        </div>
+    </footer>
+
+    </div><!-- /.page-content -->
+
+    <!-- 视频弹窗 - 放在page-content外面避免动画影响 -->
     <div class="video-modal" id="videoModal">
         <div class="modal-overlay"></div>
         <div class="modal-content">
@@ -271,7 +278,7 @@
         </div>
     </div>
 
-    <!-- 系列展开面板 -->
+    <!-- 系列展开面板 - 放在page-content外面 -->
     <div class="series-panel" id="seriesPanel">
         <div class="panel-overlay"></div>
         <div class="panel-content">
@@ -285,15 +292,6 @@
             </div>
         </div>
     </div>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 KSCMerror. All rights reserved.</p>
-        </div>
-    </footer>
-
-    </div><!-- /.page-content -->
 
     <script src="js/main.js"></script>
 </body>

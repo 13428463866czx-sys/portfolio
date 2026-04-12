@@ -254,6 +254,12 @@ body.glitching .page-content {
     backdrop-filter: blur(10px);
 }
 
+/* 非首页页面导航栏默认显示背景 */
+body.subpage .navbar {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+}
+
 .nav-container {
     display: flex;
     justify-content: flex-end;
@@ -463,7 +469,7 @@ body.glitching .page-content {
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -4px;
     left: 0;
     width: 0;
     height: 2px;
@@ -866,12 +872,65 @@ body.glitching .page-content {
     justify-content: flex-end;
 }
 
-/* 图片瀑布流 */
+/* 图片瀑布流 - 6个卡片布局 */
 .gallery-masonry {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 300px);
+    grid-template-rows: repeat(2, 280px);
     gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+/* 大图占2x2 */
+.gallery-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px 20px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--white);
+}
+
+.gallery-overlay p {
+    font-size: 14px;
+    color: var(--cyan);
+    opacity: 0.9;
 }
 
 .gallery-item {
@@ -963,6 +1022,24 @@ img {
     }
 }
 
+@media (max-width: 1024px) {
+    .gallery-masonry {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 240px);
+    }
+    
+    .gallery-item.large {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    
+    .gallery-item:nth-child(4),
+    .gallery-item:nth-child(5) {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+
 @media (max-width: 768px) {
     .gallery-masonry {
         grid-template-columns: 1fr;
@@ -973,7 +1050,7 @@ img {
     .gallery-item.large {
         grid-column: span 1;
         grid-row: span 1;
-        height: 250px;
+        height: 220px;
     }
     
     .section-header {
@@ -1564,35 +1641,57 @@ img {
     height: 100%;
     z-index: 2000;
     display: none;
+    overflow-y: auto;
 }
 
 .series-panel.active {
     display: block;
 }
 
+.series-panel.active .panel-content {
+    animation: panelFadeIn 0.3s ease;
+}
+
+@keyframes panelFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .panel-overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
+    z-index: 1;
 }
 
 .panel-content {
     position: relative;
-    z-index: 2001;
+    z-index: 2;
     width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    padding: 80px 40px 40px;
+    min-height: 100vh;
+    padding: 100px 40px 40px;
+    background: transparent;
+    pointer-events: none; /* 让点击穿透到overlay */
+}
+
+.panel-content > * {
+    pointer-events: auto; /* 子元素恢复点击 */
 }
 
 .panel-close {
-    position: fixed;
+    position: absolute;
     top: 20px;
-    right: 40px;
+    right: 20px;
     width: 50px;
     height: 50px;
     background: rgba(0, 0, 0, 0.5);
@@ -1601,7 +1700,7 @@ img {
     color: var(--white);
     font-size: 28px;
     cursor: pointer;
-    z-index: 2002;
+    z-index: 10;
     transition: all 0.3s ease;
 }
 
@@ -1613,6 +1712,7 @@ img {
 .panel-header {
     text-align: center;
     margin-bottom: 40px;
+    color: var(--white);
 }
 
 .panel-header h2 {
@@ -1628,10 +1728,11 @@ img {
 
 .panel-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
 }
 
 .panel-gallery img {
@@ -1644,6 +1745,29 @@ img {
 }
 
 .panel-gallery img:hover {
+    transform: scale(1.02);
+}
+
+.panel-img-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #333;
+    aspect-ratio: 4/3;
+}
+
+.panel-img-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: block;
+    display: block;
+}
+
+.panel-img-item:hover img {
     transform: scale(1.02);
 }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>静态作品 - KSCMerror</title>
+    <title>作品集 - 静态视觉 | KSCMerror</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/subpage.css">
     <link rel="stylesheet" href="css/static.css">
@@ -12,9 +12,12 @@
     <!-- 页面转场遮罩 -->
     <div class="page-transition"></div>
     
-    <!-- 页面内容容器 -->
-    <div class="page-content">
-    
+    <!-- 背景效果 -->
+    <div class="bg-effects">
+        <div class="grid-overlay"></div>
+        <div class="vignette"></div>
+    </div>
+
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
@@ -33,21 +36,22 @@
         </div>
     </nav>
 
-    <!-- 页面头部 -->
+    <div class="page-content">
+    <!-- 页面标题 -->
     <header class="page-header">
         <div class="container">
             <h1 class="page-title">
                 <span class="title-en">PORTFOLIO</span>
-                <span class="title-cn">静态视觉</span>
+                <span class="title-cn">· 静态</span>
             </h1>
             
             <!-- 筛选标签 -->
             <div class="filter-tabs">
                 <button class="filter-tab active" data-filter="all">全部</button>
-                <button class="filter-tab" data-filter="landscape">风光</button>
-                <button class="filter-tab" data-filter="portrait">人像</button>
-                <button class="filter-tab" data-filter="still">静物</button>
-                <button class="filter-tab" data-filter="street">街拍</button>
+                <button class="filter-tab" data-filter="print">印刷品设计</button>
+                <button class="filter-tab" data-filter="ecommerce">电商</button>
+                <button class="filter-tab" data-filter="scene">场景</button>
+                <button class="filter-tab" data-filter="photography">静物摄影</button>
             </div>
         </div>
     </header>
@@ -56,132 +60,244 @@
     <section class="series-grid-section">
         <div class="container">
             <div class="series-grid" id="seriesGrid">
-                <!-- 系列 1 -->
-                <div class="series-card" data-category="landscape" data-series="city-night">
+                <!-- Brand Collateral 系列 -->
+                <div class="series-card" data-category="print" data-series="brand-collateral">
                     <div class="series-cover">
-                        <img src="images/series/city-night/cover.jpg" alt="城市夜景">
-                        <div class="series-overlay">
-                            <span class="series-count">12 张</span>
-                        </div>
-                    </div>
-                    <div class="series-info">
-                        <h3 class="series-title">城市夜景</h3>
-                        <p class="series-desc">霓虹与建筑的交响曲</p>
-                    </div>
-                </div>
-
-                <!-- 系列 2 -->
-                <div class="series-card" data-category="portrait" data-series="cyber-portrait">
-                    <div class="series-cover">
-                        <img src="images/series/cyber-portrait/cover.jpg" alt="赛博人像">
-                        <div class="series-overlay">
-                            <span class="series-count">8 张</span>
-                        </div>
-                    </div>
-                    <div class="series-info">
-                        <h3 class="series-title">赛博人像</h3>
-                        <p class="series-desc">青绿与品红的光影实验</p>
-                    </div>
-                </div>
-
-                <!-- 系列 3 -->
-                <div class="series-card" data-category="still" data-series="product-light">
-                    <div class="series-cover">
-                        <img src="images/series/product-light/cover.jpg" alt="产品光影">
-                        <div class="series-overlay">
-                            <span class="series-count">15 张</span>
-                        </div>
-                    </div>
-                    <div class="series-info">
-                        <h3 class="series-title">产品光影</h3>
-                        <p class="series-desc">商业静物摄影集</p>
-                    </div>
-                </div>
-
-                <!-- 系列 4 -->
-                <div class="series-card" data-category="street" data-series="tokyo-street">
-                    <div class="series-cover">
-                        <img src="images/series/tokyo-street/cover.jpg" alt="东京街头">
-                        <div class="series-overlay">
-                            <span class="series-count">20 张</span>
-                        </div>
-                    </div>
-                    <div class="series-info">
-                        <h3 class="series-title">东京街头</h3>
-                        <p class="series-desc">赛博朋克圣地巡礼</p>
-                    </div>
-                </div>
-
-                <!-- 系列 5 -->
-                <div class="series-card" data-category="landscape" data-series="nature-light">
-                    <div class="series-cover">
-                        <img src="images/series/nature-light/cover.jpg" alt="自然光">
+                        <img src="images/series/brand-collateral/cover.jpg" alt="Brand Collateral">
                         <div class="series-overlay">
                             <span class="series-count">10 张</span>
                         </div>
                     </div>
                     <div class="series-info">
-                        <h3 class="series-title">自然光</h3>
-                        <p class="series-desc">日出日落的光影记录</p>
+                        <h3 class="series-title">品牌物料 Brand Collateral</h3>
+                        <p class="series-desc">海报、VI、包装 · 印刷品设计</p>
                     </div>
                 </div>
 
-                <!-- 系列 6 -->
-                <div class="series-card" data-category="portrait" data-series="studio-light">
+                <!-- Nasal Spray 系列 -->
+                <div class="series-card" data-category="ecommerce" data-series="nasal-spray">
                     <div class="series-cover">
-                        <img src="images/series/studio-light/cover.jpg" alt="棚拍人像">
+                        <img src="images/series/nasal-spray/cover.jpg" alt="Nasal Spray">
+                        <div class="series-overlay">
+                            <span class="series-count">8 张</span>
+                        </div>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">鼻腔喷雾 Nasal Spray</h3>
+                        <p class="series-desc">产品渲染 · 电商</p>
+                    </div>
+                </div>
+
+                <!-- Landscape & Travel (站酷) -->
+                <a href="https://www.zcool.com.cn/work/ZNTA3MTg5OTI=.html" target="_blank" class="series-card external-link" data-category="scene">
+                    <div class="series-cover">
+                        <img src="images/series/zcool-covers/landscape-travel.webp" alt="Landscape & Travel">
+                        <div class="series-overlay">
+                            <span class="series-count">站酷</span>
+                        </div>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">Landscape & Travel</h3>
+                        <p class="series-desc">云南旅摄像 · 场景</p>
+                    </div>
+                </a>
+
+                <!-- Beauty Makeup 系列 -->
+                <div class="series-card" data-category="ecommerce" data-series="beauty-makeup">
+                    <div class="series-cover">
+                        <img src="images/series/beauty-makeup/cover.jpg" alt="Beauty Makeup">
+                        <div class="series-overlay">
+                            <span class="series-count">17 张</span>
+                        </div>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">美妆造型 Beauty Makeup</h3>
+                        <p class="series-desc">产品渲染 · 电商</p>
+                    </div>
+                </div>
+
+                <!-- Atmosphere Light 系列 -->
+                <div class="series-card" data-category="ecommerce" data-series="atmosphere-light">
+                    <div class="series-cover">
+                        <img src="images/series/atmosphere-light/cover.jpg" alt="Atmosphere Light">
+                        <div class="series-overlay">
+                            <span class="series-count">25 张</span>
+                        </div>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">氛围灯 Atmosphere Light</h3>
+                        <p class="series-desc">产品渲染 · 电商</p>
+                    </div>
+                </div>
+
+                <!-- City Light (站酷) -->
+                <a href="https://www.zcool.com.cn/work/ZNDM4NTc5MzY=.html" target="_blank" class="series-card external-link" data-category="scene">
+                    <div class="series-cover">
+                        <img src="images/series/zcool-covers/city-light.webp" alt="City Light">
+                        <div class="series-overlay">
+                            <span class="series-count">站酷</span>
+                        </div>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">City Light</h3>
+                        <p class="series-desc">城市拍摄 · 场景</p>
+                    </div>
+                </a>
+
+                <!-- Scene Render 系列 -->
+                <div class="series-card" data-category="scene" data-series="scene-render">
+                    <div class="series-cover">
+                        <img src="images/series/scene-render/cover.jpg" alt="Scene Render">
                         <div class="series-overlay">
                             <span class="series-count">6 张</span>
                         </div>
                     </div>
                     <div class="series-info">
-                        <h3 class="series-title">棚拍人像</h3>
-                        <p class="series-desc">专业灯光下的质感</p>
+                        <h3 class="series-title">场景渲染 Scene Render</h3>
+                        <p class="series-desc">3D渲染 · 场景</p>
                     </div>
                 </div>
 
-                <!-- 系列 7 -->
-                <div class="series-card" data-category="still" data-series="food-art">
+                <!-- Tool Set 系列 -->
+                <div class="series-card" data-category="ecommerce" data-series="tool-set">
                     <div class="series-cover">
-                        <img src="images/series/food-art/cover.jpg" alt="美食艺术">
+                        <img src="images/series/tool-set/cover.jpg" alt="Tool Set">
                         <div class="series-overlay">
-                            <span class="series-count">18 张</span>
+                            <span class="series-count">5 张</span>
                         </div>
                     </div>
                     <div class="series-info">
-                        <h3 class="series-title">美食艺术</h3>
-                        <p class="series-desc">色彩与食欲的对话</p>
+                        <h3 class="series-title">工具套装 Tool Set</h3>
+                        <p class="series-desc">产品渲染 · 电商</p>
                     </div>
                 </div>
 
-                <!-- 系列 8 -->
-                <div class="series-card" data-category="street" data-series="hongkong-night">
+                <!-- Scene Shooting (站酷) -->
+                <a href="https://www.zcool.com.cn/work/ZMzU4ODM2NTY=.html" target="_blank" class="series-card external-link" data-category="photography">
                     <div class="series-cover">
-                        <img src="images/series/hongkong-night/cover.jpg" alt="香港夜行">
+                        <img src="images/series/zcool-covers/scene-shooting.webp" alt="Scene Shooting">
                         <div class="series-overlay">
-                            <span class="series-count">24 张</span>
+                            <span class="series-count">站酷</span>
                         </div>
                     </div>
                     <div class="series-info">
-                        <h3 class="series-title">香港夜行</h3>
-                        <p class="series-desc">密集城市的呼吸</p>
+                        <h3 class="series-title">Scene Shooting</h3>
+                        <p class="series-desc">场景拍摄 · 静物摄影</p>
+                    </div>
+                </a>
+
+                <!-- Speaker 系列 -->
+                <div class="series-card" data-category="photography" data-series="speaker">
+                    <div class="series-cover">
+                        <img src="images/series/speaker/cover.jpg" alt="Speaker">
+                        <div class="series-overlay">
+                            <span class="series-count">6 张</span>
+                        </div>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">音箱 Speaker</h3>
+                        <p class="series-desc">产品摄影 · 静物</p>
                     </div>
                 </div>
+
+                <!-- Bird Feeder 系列 -->
+                <div class="series-card" data-category="photography" data-series="bird-feeder">
+                    <div class="series-cover">
+                        <img src="images/series/bird-feeder/cover.jpg" alt="Bird Feeder">
+                        <div class="series-overlay">
+                            <span class="series-count">2 张</span>
+                        </div>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">喂鸟器 Bird Feeder</h3>
+                        <p class="series-desc">产品摄影 · 静物</p>
+                    </div>
+                </div>
+
+                <!-- Product & Layout (站酷) -->
+                <a href="https://www.zcool.com.cn/work/ZMzUzMDIxNzI=.html" target="_blank" class="series-card external-link" data-category="photography">
+                    <div class="series-cover">
+                        <img src="images/series/zcool-covers/product-layout.webp" alt="Product & Layout">
+                        <div class="series-overlay">
+                            <span class="series-count">站酷</span>
+                        </div>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">Product & Layout</h3>
+                        <p class="series-desc">产品拍摄+排版 · 静物摄影</p>
+                    </div>
+                </a>
+
+                <!-- Smart Bidet 系列 -->
+                <div class="series-card" data-category="ecommerce" data-series="smart-bidet">
+                    <div class="series-cover">
+                        <img src="images/series/smart-bidet/cover.jpg" alt="Smart Bidet">
+                        <div class="series-overlay">
+                            <span class="series-count">11 张</span>
+                        </div>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">智能马桶盖 Smart Bidet</h3>
+                        <p class="series-desc">产品渲染 · 电商</p>
+                    </div>
+                </div>
+
+                <!-- Bike Light 系列 -->
+                <div class="series-card" data-category="ecommerce" data-series="bike-light">
+                    <div class="series-cover">
+                        <img src="images/series/bike-light/cover.jpg" alt="Bike Light">
+                        <div class="series-overlay">
+                            <span class="series-count">7 张</span>
+                        </div>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">自行车转向灯 Bike Light</h3>
+                        <p class="series-desc">产品渲染 · 电商</p>
+                    </div>
+                </div>
+
+                <!-- Event Brochure (站酷) -->
+                <a href="https://www.zcool.com.cn/work/ZMzE1OTc2ODA=.html" target="_blank" class="series-card external-link" data-category="print">
+                    <div class="series-cover">
+                        <img src="images/series/zcool-covers/event-brochure.webp" alt="Event Brochure">
+                        <div class="series-overlay">
+                            <span class="series-count">站酷</span>
+                        </div>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">Event Brochure</h3>
+                        <p class="series-desc">发布会宣传画册 · 印刷品设计</p>
+                    </div>
+                </a>
+
+                <!-- Promo Poster (站酷) -->
+                <a href="https://www.zcool.com.cn/work/ZMzE1OTc0NjQ=.html" target="_blank" class="series-card external-link" data-category="print">
+                    <div class="series-cover">
+                        <img src="images/series/zcool-covers/promo-poster.webp" alt="Promo Poster">
+                        <div class="series-overlay">
+                            <span class="series-count">站酷</span>
+                        </div>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">Promo Poster</h3>
+                        <p class="series-desc">招商海报 · 印刷品设计</p>
+                    </div>
+                </a>
             </div>
 
-            <!-- 分页 -->
-            <div class="pagination" id="pagination">
-                <button class="page-btn prev" disabled>← 上一页</button>
-                <span class="page-numbers">
-                    <button class="page-num active">1</button>
-                    <button class="page-num">2</button>
-                </span>
-                <button class="page-btn next">下一页 →</button>
-            </div>
         </div>
     </section>
 
-    <!-- 系列展开面板 -->
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 KSCMerror. All rights reserved.</p>
+        </div>
+    </footer>
+
+    </div><!-- /.page-content -->
+
+    <!-- 系列展开面板 - 放在page-content外面避免动画影响 -->
     <div class="series-panel" id="seriesPanel">
         <div class="panel-overlay"></div>
         <div class="panel-content">
@@ -196,16 +312,6 @@
         </div>
     </div>
 
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 KSCMerror. All rights reserved.</p>
-        </div>
-    </footer>
-
-    </div><!-- /.page-content -->
-
-    <script src="js/subpage.js"></script>
     <script src="js/static.js"></script>
 </body>
 </html>

@@ -13,99 +13,167 @@ function initSeriesPanel() {
     const panelTitle = document.getElementById('panelTitle');
     const panelDesc = document.getElementById('panelDesc');
     const panelGallery = document.getElementById('panelGallery');
+    let savedScrollPosition = 0;
 
     if (!seriesCards.length || !seriesPanel) return;
 
-    // 模拟系列数据（实际使用时从后端或JSON加载）
+    // 系列数据
     const seriesData = {
-        'city-night': {
-            title: '城市夜景',
-            desc: '霓虹与建筑的交响曲',
+        'brand-collateral': {
+            title: 'Brand Collateral',
+            desc: '海报、VI、包装与产品说明书设计',
             images: [
-                'images/series/city-night/01.jpg',
-                'images/series/city-night/02.jpg',
-                'images/series/city-night/03.jpg',
-                'images/series/city-night/04.jpg',
-                'images/series/city-night/05.jpg',
-                'images/series/city-night/06.jpg',
-                'images/series/city-night/07.jpg',
-                'images/series/city-night/08.jpg',
-                'images/series/city-night/09.jpg',
-                'images/series/city-night/10.jpg',
-                'images/series/city-night/11.jpg',
-                'images/series/city-night/12.jpg',
+                { src: 'images/series/brand-collateral/01_poster.jpg', label: '海报 (排版、ps)' },
+                { src: 'images/series/brand-collateral/02_manual_00.jpg', label: '说明书 (OC)' },
+                { src: 'images/series/brand-collateral/03_manual_01.jpg', label: '' },
+                { src: 'images/series/brand-collateral/04_manual_02.jpg', label: '' },
+                { src: 'images/series/brand-collateral/05_manual_03.jpg', label: '' },
+                { src: 'images/series/brand-collateral/06_manual_04.jpg', label: '' },
+                { src: 'images/series/brand-collateral/07_manual_05.jpg', label: '' },
+                { src: 'images/series/brand-collateral/08_manual_06.jpg', label: '' },
+                { src: 'images/series/brand-collateral/09_langcity_vi.jpg', label: 'langcityVI (logo设计)' },
+                { src: 'images/series/brand-collateral/10_led_packaging.png', label: 'LED_Packaging (设计)' },
             ]
         },
-        'cyber-portrait': {
-            title: '赛博人像',
-            desc: '青绿与品红的光影实验',
+        'nasal-spray': {
+            title: 'Nasal Spray',
+            desc: '鼻腔喷雾产品渲染与电商设计',
             images: [
-                'images/series/cyber-portrait/01.jpg',
-                'images/series/cyber-portrait/02.jpg',
-                'images/series/cyber-portrait/03.jpg',
-                'images/series/cyber-portrait/04.jpg',
-                'images/series/cyber-portrait/05.jpg',
-                'images/series/cyber-portrait/06.jpg',
-                'images/series/cyber-portrait/07.jpg',
-                'images/series/cyber-portrait/08.jpg',
+                { src: 'images/series/nasal-spray/01_render.jpg', label: '0 (OC)' },
+                { src: 'images/series/nasal-spray/02_render_raw.png', label: '0 (OC原生)' },
+                { src: 'images/series/nasal-spray/03_render.jpg', label: '1 (OC)' },
+                { src: 'images/series/nasal-spray/04_render.jpg', label: '2 (OC)' },
+                { src: 'images/series/nasal-spray/05_render.jpg', label: '3 (OC)' },
+                { src: 'images/series/nasal-spray/06_render.jpg', label: '4 (OC)' },
+                { src: 'images/series/nasal-spray/07_detail_page.jpg', label: '详情页 (OC、排版)' },
+                { src: 'images/series/nasal-spray/08_other.jpg', label: 'OTHER+ (排版)' },
             ]
         },
-        'product-light': {
-            title: '产品光影',
-            desc: '商业静物摄影集',
+        'beauty-makeup': {
+            title: 'Beauty Makeup',
+            desc: '美妆造型产品渲染与电商设计',
             images: [
-                'images/series/product-light/01.jpg',
-                'images/series/product-light/02.jpg',
-                'images/series/product-light/03.jpg',
-                'images/series/product-light/04.jpg',
-                'images/series/product-light/05.jpg',
+                { src: 'images/series/beauty-makeup/01.jpg', label: '1 (白底图、OC)' },
+                { src: 'images/series/beauty-makeup/02.jpg', label: '2 (排版、OC)' },
+                { src: 'images/series/beauty-makeup/03.jpg', label: '3 (排版、OC)' },
+                { src: 'images/series/beauty-makeup/04.jpg', label: '4 (白底图、mockup、oc)' },
+                { src: 'images/series/beauty-makeup/05.jpg', label: '5 (白底图、oc)' },
+                { src: 'images/series/beauty-makeup/06.jpg', label: '6 (oc)' },
+                { src: 'images/series/beauty-makeup/07.jpg', label: '7 (OC、mockup)' },
+                { src: 'images/series/beauty-makeup/08.jpg', label: '8 (OC、mockup)' },
+                { src: 'images/series/beauty-makeup/09.jpg', label: '9 (OC)' },
+                { src: 'images/series/beauty-makeup/10.jpg', label: '10 (OC)' },
+                { src: 'images/series/beauty-makeup/11.jpg', label: '11 (OC、A+)' },
+                { src: 'images/series/beauty-makeup/12.jpg', label: '12 (OC、A+)' },
+                { src: 'images/series/beauty-makeup/13.jpg', label: '12 (OC)' },
+                { src: 'images/series/beauty-makeup/14_A2.jpg', label: '' },
+                { src: 'images/series/beauty-makeup/15_A3.jpg', label: '' },
+                { src: 'images/series/beauty-makeup/16_A4.jpg', label: '' },
+                { src: 'images/series/beauty-makeup/17_logo.jpg', label: '' },
             ]
         },
-        'tokyo-street': {
-            title: '东京街头',
-            desc: '赛博朋克圣地巡礼',
+        'atmosphere-light': {
+            title: 'Atmosphere Light',
+            desc: '氛围灯产品渲染与电商设计',
             images: [
-                'images/series/tokyo-street/01.jpg',
-                'images/series/tokyo-street/02.jpg',
-                'images/series/tokyo-street/03.jpg',
-                'images/series/tokyo-street/04.jpg',
-                'images/series/tokyo-street/05.jpg',
+                { src: 'images/series/atmosphere-light/01.png', label: '1 (OC、渲染原型)' },
+                { src: 'images/series/atmosphere-light/02.png', label: '2 (OC、渲染原型)' },
+                { src: 'images/series/atmosphere-light/03.png', label: '3 (OC、mockup)' },
+                { src: 'images/series/atmosphere-light/04.png', label: '4 (OC)' },
+                { src: 'images/series/atmosphere-light/05.png', label: '5' },
+                { src: 'images/series/atmosphere-light/06.png', label: '6 (OC)' },
+                { src: 'images/series/atmosphere-light/07.png', label: '7 (OC)' },
+                { src: 'images/series/atmosphere-light/08.png', label: '8 (OC)' },
+                { src: 'images/series/atmosphere-light/09.jpg', label: '9 (OC、A+、户外模拟)' },
+                { src: 'images/series/atmosphere-light/10.jpg', label: '10 (白底图、OC)' },
+                { src: 'images/series/atmosphere-light/11.jpg', label: '11 (OC)' },
+                { src: 'images/series/atmosphere-light/12.jpg', label: '12 (OC、mockup)' },
+                { src: 'images/series/atmosphere-light/13.jpg', label: '13 (appMOCKUP)' },
+                { src: 'images/series/atmosphere-light/14.jpg', label: '14 (OC)' },
+                { src: 'images/series/atmosphere-light/15.jpg', label: '15 (OC)' },
+                { src: 'images/series/atmosphere-light/16.jpg', label: '16 (OC、A+)' },
+                { src: 'images/series/atmosphere-light/17.jpg', label: '17 (OC、A+)' },
+                { src: 'images/series/atmosphere-light/18.jpg', label: '18 (OC、mockup)' },
+                { src: 'images/series/atmosphere-light/19.jpg', label: '19 (OC、白底图)' },
+                { src: 'images/series/atmosphere-light/20.jpg', label: '20 (OC)' },
+                { src: 'images/series/atmosphere-light/21.jpg', label: '21 (拍摄)' },
+                { src: 'images/series/atmosphere-light/22.jpg', label: '22 (oc)' },
+                { src: 'images/series/atmosphere-light/23.jpg', label: '23 (oc)' },
+                { src: 'images/series/atmosphere-light/24.jpg', label: '24 (oc)' },
+                { src: 'images/series/atmosphere-light/25.jpg', label: '25 (oc)' },
             ]
         },
-        'nature-light': {
-            title: '自然光',
-            desc: '日出日落的光影记录',
+        'scene-render': {
+            title: 'Scene Render',
+            desc: '3D场景渲染作品',
             images: [
-                'images/series/nature-light/01.jpg',
-                'images/series/nature-light/02.jpg',
-                'images/series/nature-light/03.jpg',
+                { src: 'images/series/scene-render/01.png', label: '场景 1' },
+                { src: 'images/series/scene-render/02.png', label: '场景 2' },
+                { src: 'images/series/scene-render/03.jpg', label: '场景 3' },
+                { src: 'images/series/scene-render/04.jpg', label: '场景 4' },
+                { src: 'images/series/scene-render/05.jpg', label: '场景 5' },
+                { src: 'images/series/scene-render/06.jpg', label: '场景 6' },
             ]
         },
-        'studio-light': {
-            title: '棚拍人像',
-            desc: '专业灯光下的质感',
+        'tool-set': {
+            title: 'Tool Set',
+            desc: '工具套装产品渲染与电商设计',
             images: [
-                'images/series/studio-light/01.jpg',
-                'images/series/studio-light/02.jpg',
-                'images/series/studio-light/03.jpg',
+                { src: 'images/series/tool-set/01.jpg', label: '1 (OC、白底图)' },
+                { src: 'images/series/tool-set/02.jpg', label: '2 (OC、mockup)' },
+                { src: 'images/series/tool-set/03.jpg', label: '3 (OC、mockup)' },
+                { src: 'images/series/tool-set/04.jpg', label: '4 (OC)' },
+                { src: 'images/series/tool-set/05.jpg', label: '5 (OC)' },
             ]
         },
-        'food-art': {
-            title: '美食艺术',
-            desc: '色彩与食欲的对话',
+        'speaker': {
+            title: 'Speaker',
+            desc: '音箱产品静物摄影',
             images: [
-                'images/series/food-art/01.jpg',
-                'images/series/food-art/02.jpg',
-                'images/series/food-art/03.jpg',
+                { src: 'images/series/speaker/01.jpg', label: '1 (棚拍)' },
+                { src: 'images/series/speaker/02.jpg', label: '2 (棚拍、场景搭建)' },
+                { src: 'images/series/speaker/03.jpg', label: '3 (棚拍)' },
+                { src: 'images/series/speaker/04.jpg', label: '4 (棚拍)' },
+                { src: 'images/series/speaker/05.jpg', label: '5 (棚拍)' },
+                { src: 'images/series/speaker/06.jpg', label: '6 (棚拍、场景搭建)' },
             ]
         },
-        'hongkong-night': {
-            title: '香港夜行',
-            desc: '密集城市的呼吸',
+        'bird-feeder': {
+            title: 'Bird Feeder',
+            desc: '喂鸟器产品静物摄影',
             images: [
-                'images/series/hongkong-night/01.jpg',
-                'images/series/hongkong-night/02.jpg',
-                'images/series/hongkong-night/03.jpg',
+                { src: 'images/series/bird-feeder/01.jpg', label: '1 (棚拍)' },
+                { src: 'images/series/bird-feeder/02.jpg', label: '2 (棚拍)' },
+            ]
+        },
+        'smart-bidet': {
+            title: 'Smart Bidet',
+            desc: '智能马桶盖产品渲染与电商设计',
+            images: [
+                { src: 'images/series/smart-bidet/01.jpg', label: '1 (OC)' },
+                { src: 'images/series/smart-bidet/02.jpg', label: '1C' },
+                { src: 'images/series/smart-bidet/03.jpg', label: '2A' },
+                { src: 'images/series/smart-bidet/04.jpg', label: '2C' },
+                { src: 'images/series/smart-bidet/05.jpg', label: '详情页 (970x600)' },
+                { src: 'images/series/smart-bidet/06.jpg', label: '详情页 (970x600)' },
+                { src: 'images/series/smart-bidet/07.jpg', label: '场景图 1' },
+                { src: 'images/series/smart-bidet/08.jpg', label: '场景图 2' },
+                { src: 'images/series/smart-bidet/09.jpg', label: '场景图 4' },
+                { src: 'images/series/smart-bidet/10.jpg', label: '场景图 5' },
+                { src: 'images/series/smart-bidet/11.jpg', label: '场景图 6' },
+            ]
+        },
+        'bike-light': {
+            title: 'Bike Light',
+            desc: '自行车转向灯产品渲染与电商设计',
+            images: [
+                { src: 'images/series/bike-light/01.jpg', label: '主图 (OC)' },
+                { src: 'images/series/bike-light/02.jpg', label: 'A+ 1 (OC)' },
+                { src: 'images/series/bike-light/03.jpg', label: 'A+ 2 (OC)' },
+                { src: 'images/series/bike-light/04.jpg', label: 'A+ 3 (OC)' },
+                { src: 'images/series/bike-light/05.jpg', label: 'B+ 1 (OC)' },
+                { src: 'images/series/bike-light/06.jpg', label: 'B+ 2 (OC)' },
+                { src: 'images/series/bike-light/07.jpg', label: 'B+ 3 (OC)' },
             ]
         }
     };
@@ -122,20 +190,46 @@ function initSeriesPanel() {
             panelDesc.textContent = series.desc;
 
             // 生成画廊
-            panelGallery.innerHTML = series.images.map((img, index) => `
+            panelGallery.innerHTML = series.images.map((img, index) => {
+                // 解析标签：主标题 + 括号内的标签
+                let mainLabel = '';
+                let tags = [];
+                if (img.label) {
+                    const match = img.label.match(/^(.+?)\s*\((.*)\)$/);
+                    if (match) {
+                        mainLabel = match[1].trim();
+                        tags = match[2].split(/[,、]/).map(t => t.trim()).filter(Boolean);
+                    } else {
+                        mainLabel = img.label;
+                    }
+                }
+                
+                return `
                 <div class="gallery-item" data-index="${index}">
-                    <img src="${img}" alt="${series.title} ${index + 1}">
+                    <div class="gallery-img-wrap">
+                        <img src="${img.src}" alt="${series.title} ${index + 1}" loading="lazy">
+                    </div>
+                    ${img.label ? `
+                    <div class="gallery-label">
+                        <div class="label-title">${mainLabel}</div>
+                        ${tags.length ? `
+                        <div class="label-tags">
+                            ${tags.map(tag => `<span class="label-tag">${tag}</span>`).join('')}
+                        </div>` : ''}
+                    </div>` : ''}
                 </div>
-            `).join('');
+            `}).join('');
 
             // 添加图片点击事件
             const galleryItems = panelGallery.querySelectorAll('.gallery-item');
             galleryItems.forEach((item, index) => {
-                item.addEventListener('click', () => openLightbox(series.images, index));
+                item.addEventListener('click', () => openLightbox(series.images.map(i => i.src), index));
             });
 
+            savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
             seriesPanel.classList.add('active');
             document.body.style.overflow = 'hidden';
+            seriesPanel.scrollTo(0, 0);
         });
     });
 
@@ -143,6 +237,7 @@ function initSeriesPanel() {
     function closePanel() {
         seriesPanel.classList.remove('active');
         document.body.style.overflow = '';
+        window.scrollTo(0, savedScrollPosition);
     }
 
     panelClose.addEventListener('click', closePanel);
