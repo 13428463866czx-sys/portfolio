@@ -13,8 +13,8 @@
 .series-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    margin-bottom: 50px;
+    gap: 30px;
+    margin-bottom: 40px;
 }
 
 /* 系列卡片 */
@@ -28,8 +28,45 @@
 
 .series-cover {
     position: relative;
-    aspect-ratio: 4/3;
+    aspect-ratio: 16/9;
     overflow: hidden;
+}
+
+/* 卡片 HUD 角标 - hover 时显示 */
+.series-cover::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid var(--cyan);
+    border-right: 2px solid var(--cyan);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.series-card:hover .series-cover::before {
+    opacity: 1;
+}
+
+.series-cover::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid var(--magenta);
+    border-left: 2px solid var(--magenta);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.series-card:hover .series-cover::after {
+    opacity: 1;
 }
 
 .series-cover img {
@@ -180,8 +217,9 @@
 /* 画廊网格 */
 .panel-gallery {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
 }
 
 .gallery-item {
@@ -195,7 +233,7 @@
 
 .gallery-item .gallery-img-wrap {
     position: relative;
-    aspect-ratio: 4/3;
+    aspect-ratio: 16/9;
     overflow: hidden;
 }
 

@@ -114,18 +114,42 @@ function initVideoCarousel() {
     
     if (!thumbs.length || !videos.length) return;
     
+    let currentIndex = 0;
+    let autoPlayInterval;
+    
+    // 切换到指定索引
+    function goToSlide(index) {
+        currentIndex = index;
+        
+        // 更新缩略图状态
+        thumbs.forEach(t => t.classList.remove('active'));
+        thumbs[currentIndex].classList.add('active');
+        
+        // 更新视频显示
+        videos.forEach(v => v.classList.remove('active'));
+        videos[currentIndex].classList.add('active');
+    }
+    
+    // 自动轮播
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(() => {
+            const nextIndex = (currentIndex + 1) % videos.length;
+            goToSlide(nextIndex);
+        }, 5000); // 5秒切换一次
+    }
+    
+    // 停止自动轮播
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+    
     // 缩略图点击切换
     thumbs.forEach(thumb => {
         thumb.addEventListener('click', function() {
-            const index = this.dataset.index;
-            
-            // 更新缩略图状态
-            thumbs.forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            
-            // 更新视频显示
-            videos.forEach(v => v.classList.remove('active'));
-            videos[index].classList.add('active');
+            const index = parseInt(this.dataset.index);
+            goToSlide(index);
+            stopAutoPlay();
+            startAutoPlay(); // 重置计时器
         });
     });
     
@@ -153,6 +177,16 @@ function initVideoCarousel() {
             modalVideo.play();
         });
     });
+    
+    // 鼠标悬停时暂停轮播
+    const carousel = document.querySelector('.video-carousel');
+    if (carousel) {
+        carousel.addEventListener('mouseenter', stopAutoPlay);
+        carousel.addEventListener('mouseleave', startAutoPlay);
+    }
+    
+    // 开始自动轮播
+    startAutoPlay();
 }
 
 // 主标题故障艺术效果

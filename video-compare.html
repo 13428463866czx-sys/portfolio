@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频画质对比 - 原版 vs 压缩版</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0f; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; }
+h1 { text-align: center; margin-bottom: 10px; font-size: 22px; }
+.subtitle { text-align: center; color: #888; margin-bottom: 24px; font-size: 14px; }
+.compare-container { display: flex; gap: 20px; justify-content: center; max-width: 1400px; margin: 0 auto; }
+.video-card {
+    background: #111;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 50%;
+    min-width: 400px;
+}
+.video-header {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.video-header.original { background: linear-gradient(90deg, #00d4aa33, #00d4aa11); border-bottom: 2px solid #00d4aa; }
+.video-header.compressed { background: linear-gradient(90deg, #ff6b3533, #ff6b3511); border-bottom: 2px solid #ff6b35; }
+.video-label { font-weight: bold; font-size: 15px; }
+.video-size { font-size: 13px; opacity: 0.7; }
+video { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+.controls { padding: 16px; text-align: center; }
+.btn {
+    display: inline-block;
+    padding: 10px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s;
+    border: none;
+    color: #fff;
+}
+.btn-play-original { background: #00d4aa; }
+.btn-play-original:hover { background: #00b894; transform: scale(1.03); }
+.btn-play-compressed { background: #ff6b35; }
+.btn-play-compressed:hover { background: #e55039; transform: scale(1.03); }
+.info-bar {
+    text-align: center;
+    margin-top: 20px;
+    padding: 14px;
+    background: #151520;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #aaa;
+    line-height: 1.8;
+}
+.info-bar span { color: #00d4aa; font-weight: bold; }
+.note { text-align: center; margin-top: 16px; font-size: 12px; color: #666; }
+
+@media (max-width: 900px) {
+    .compare-container { flex-direction: column; align-items: center; }
+    .video-card { width: 100%; min-width: unset; }
+}
+</style>
+</head>
+<body>
+
+<h1>🎬 视频画质对比</h1>
+<p class="subtitle">点击下方按钮同时播放，左右对比画质差异（建议全屏或放大浏览器看）</p>
+
+<div class="compare-container">
+    <!-- 原版 -->
+    <div class="video-card">
+        <div class="video-header original">
+            <span class="video-label">📌 原版 (Original)</span>
+            <span class="video-size">52.9 MB</span>
+        </div>
+        <video id="originalVideo" playsinline></video>
+        <div class="controls">
+            <button class="btn btn-play-original" onclick="playBoth()">▶ 同时播放对比</button>
+        </div>
+    </div>
+
+    <!-- 压缩版 -->
+    <div class="video-card">
+        <div class="video-header compressed">
+            <span class="video-label">🔥 压缩版 (Compressed)</span>
+            <span class="video-size" id="compressedSize">计算中...</span>
+        </div>
+        <video id="compressedVideo" playsinline></video>
+        <div class="controls">
+            <button class="btn btn-play-compressed" onclick="playBoth()">▶ 同时播放对比</button>
+        </div>
+    </div>
+</div>
+
+<div class="info-bar">
+    📐 分辨率：<span>1920×1080</span> &nbsp|&nbsp
+    🎚️ 编码参数：CRF 24 (H.264) &nbsp|&nbsp
+    🔊 音频：<span>保留原声 AAC 128kbps</span> &nbsp|&nbsp
+    ⏱️ 时长：<span>同一视频</span>
+</div>
+
+<p class="note">💡 提示：重点观察暗部细节、色彩渐变、文字边缘清晰度。正常观看距离下差异应该很小。</p>
+
+<script>
+const originalVideo = document.getElementById('originalVideo');
+const compressedVideo = document.getElementById('compressedVideo');
+
+// 设置视频源
+originalVideo.src = 'video/showreel26.mp4';
+compressedVideo.src = 'video/bg-showreel-audio.mp4';
+
+// 获取压缩后文件大小（通过 fetch head）
+fetch('video/bg-showreel-audio.mp4', { method: 'HEAD' })
+    .then(r => {
+        if (r.ok) {
+            const sizeMB = (parseInt(r.headers.get('content-length')) / 1048576).toFixed(1);
+            document.getElementById('compressedSize').textContent = sizeMB + ' MB';
+        } else {
+            document.getElementById('compressedSize').textContent = '文件不存在';
+        }
+    })
+    .catch(() => {
+        // local file protocol fallback - show approximate
+        document.getElementById('compressedSize').textContent = '~32 MB (预估)';
+    });
+
+function playBoth() {
+    const t = 0;
+    originalVideo.currentTime = t;
+    compressedVideo.currentTime = t;
+    originalVideo.play().catch(() => {});
+    compressedVideo.play().catch(() => {});
+}
+
+// 同步暂停
+['originalVideo', 'compressedVideo'].forEach(id => {
+    document.getElementById(id).addEventListener('pause', () => {
+        originalVideo.pause();
+        compressedVideo.pause();
+    });
+});
+</script>
+
+</body>
+</html>

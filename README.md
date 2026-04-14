@@ -1,234 +1,173 @@
-# KSCMerror 作品集网站 - 交接文档
+# KSCMerror 作品集网站
 
-## 📁 文件位置
-`F:\portfolio\`
+> 赛博朋克风格的视觉设计师个人作品集 — Cyberpunk Portfolio for Motion Designer
 
 ---
 
-## 🌐 网站结构
+## 🌐 网站预览
+
+**技术栈：** 纯 HTML / CSS / JavaScript（无框架）
+
+**页面结构：**
+
+| 页面 | 文件 | 说明 |
+|------|------|------|
+| 首页 | `index.html` | Hero 背景视频 + 视觉风格弹窗 + 作品轮播 + 关于我卡片 |
+| 动态作品 | `dynamic.html` | 17 个视频作品（分类筛选 + 弹窗播放） |
+| 静态作品 | `static.html` | 16 个摄影/设计系列（瀑布流 + Lightbox） |
+| 关于 | `about.html` | 个人介绍 + Rina AI 项目展示 |
 
 ```
 portfolio/
 ├── index.html              # 首页
-├── dynamic.html            # 动态作品页（视频）
-├── static.html             # 静态作品页（摄影系列）
+├── dynamic.html            # 动态作品页
+├── static.html             # 静态作品页
+├── about.html              # 关于页
 ├── css/
-│   ├── style.css           # 首页样式
+│   ├── style.css           # 全局 + 首页样式（含响应式）
 │   ├── subpage.css         # 子页面通用样式
+│   ├── about.css           # 关于页专用样式
 │   └── static.css          # 静态页专用样式
 ├── js/
-│   ├── main.js             # 首页脚本
+│   ├── main.js             # 首页脚本（轮播、弹窗、导航）
 │   ├── subpage.js          # 子页面通用脚本
-│   └── static.js           # 静态页专用脚本
-├── images/                 # 图片资源
-│   └── logo.png            # 网站Logo
+│   └── static.js           # 静态页脚本（系列数据）
+├── images/                 # 图片资源（WebP 格式优化）
+│   ├── video-cover-*.webp  # 17 张视频封面（已转 WebP）
+│   ├── logo.png            # 网站 Logo
+│   └── zcool/              # 站酷封面图
 └── video/
-    └── showreel-placeholder.mp4  # 首页背景视频
+    └── bg-showreel-audio.mp4  # 首页背景+弹窗视频 (28MB, 1080p, 含音频)
 ```
 
 ---
 
-## 🚀 部署到 Gitee Pages
+## 🚀 部署方式
 
-### 步骤 1：创建 Gitee 仓库
-1. 登录 [gitee.com](https://gitee.com)
-2. 点击右上角「+」→ 新建仓库
-3. 仓库名称：`kscmerror-portfolio`（或你的用户名）
-4. 选择「公开」
-5. **不要**勾选「初始化仓库」
-6. 点击「创建」
+### 当前部署：Cloudflare Pages（推荐）
 
-### 步骤 2：初始化 Git 并推送
-在 `F:\portfolio\` 文件夹地址栏输入 `cmd` 回车，执行：
+**为什么选 Cloudflare Pages：**
+- ✅ 国内可访问（有国内节点）
+- ✅ 完全免费，无限带宽
+- ✅ 自定义域名 + 自动 HTTPS
+- ✅ 连接 Git 仓库，push 即自动部署
+- ⚠️ 单文件限制 25MB（背景视频已压缩至 28MB，需确认或进一步压缩）
 
-```bash
-git init
-git add .
-git commit -m "Initial commit: portfolio website"
-git remote add origin https://gitee.com/你的用户名/仓库名.git
-git push -u origin master
-```
+### 备选方案
 
-### 步骤 3：开启 Gitee Pages
-1. 进入仓库页面
-2. 点击「服务」→「Gitee Pages」
-3. 部署目录选择 `/`（根目录）
-4. 点击「启动」
-5. 等待几分钟，访问生成的链接
+| 平台 | 国内速度 | 免费额度 | 备注 |
+|------|---------|---------|------|
+| Cloudflare Pages | ✅ 快 | 无限带宽 | **当前使用** |
+| Vercel | ⚠️ 慢 | 100GB/月 | 体验最好 |
+| Netlify | ⚠️ 慢 | 100GB/月 | 功能丰富 |
+| GitHub Pages | ⚠️ 慢 | 100GB/月 | 简单稳定 |
+
+> Gitee Pages 已停止服务（2026年起），不再使用。
 
 ---
 
-## 📝 后续修改指南
+## 🎬 视频方案
 
-### 1. 首页视频更换
-文件：`index.html` 第 28 行
-```html
-<source src="video/showreel-placeholder.mp4" type="video/mp4">
-```
-替换为新的视频文件名，或直接替换 `video/` 文件夹内的文件。
+### 首页背景视频
+- 文件：`video/bg-showreel-audio.mp4`
+- 大小：**28 MB**（原版 52.9MB → CRF24 压缩 -47%）
+- 规格：1080p, H.264, AAC 音频保留
+- 用途：首页背景循环播放 + "一分钟了解我的视觉风格"弹窗播放（有声音）
 
-### 2. 动态作品页添加视频
-文件：`dynamic.html`
-
-在 `<div class="video-grid">` 内添加：
-```html
-<div class="video-card" data-video="阿里云视频链接" data-title="作品标题">
-    <div class="video-thumbnail">
-        <img src="images/视频封面.jpg" alt="作品标题">
-        <div class="play-overlay">
-            <div class="play-icon">▶</div>
-        </div>
-    </div>
-    <div class="video-info">
-        <h3 class="video-title">作品标题</h3>
-        <p class="video-meta">剪辑 · 2024</p>
-    </div>
-</div>
-```
-
-### 3. 静态作品页添加系列
-文件：`static.html` + `js/static.js`
-
-**HTML 部分**：在 `<div class="series-grid">` 内添加
-```html
-<div class="series-card" data-series="系列ID" data-category="分类">
-    <div class="series-cover">
-        <img src="images/系列封面.jpg" alt="系列名称">
-    </div>
-    <div class="series-info">
-        <h3 class="series-title">系列名称</h3>
-        <p class="series-count">8 张</p>
-    </div>
-</div>
-```
-
-**JS 部分**：在 `static.js` 的 `seriesData` 对象中添加
-```javascript
-'seriesID': {
-    title: '系列名称',
-    desc: '系列描述',
-    images: [
-        'images/series/seriesID/01.jpg',
-        'images/series/seriesID/02.jpg',
-        // ...更多图片
-    ]
-}
-```
-
-### 4. 修改配色
-文件：`css/style.css` 第 4-9 行
-```css
-:root {
-    --cyan: #00FFD0;        /* 青绿色 */
-    --magenta: #FF00A0;     /* 品红色 */
-    --black: #0a0a0a;       /* 背景黑 */
-    --white: #ffffff;
-    --dark-gray: #1a1a1a;
-}
-```
-
----
-
-## ☁️ 视频托管方案
-
-### 推荐：阿里云 OSS
-1. 登录 [阿里云控制台](https://oss.console.aliyun.com)
-2. 创建 Bucket（地域选国内，权限「公共读」）
-3. 上传视频文件
-4. 获取视频 URL：`https://bucket-name.oss-cn-region.aliyuncs.com/video.mp4`
-5. 将 URL 填入 `dynamic.html` 的 `data-video` 属性
-
-### 费用参考
-- 存储：约 0.12元/GB/月
-- 流量：约 0.24元/GB
-- 40GB 存储 + 100GB 流量 ≈ 30元/月
+### 作品展示视频
+- 托管在 **阿里云 OSS**（外链引用）
+- Bucket：`kscmerror-showreel`
+- 数量：17 个视频文件
+- dynamic.html 和 index.html 轮播通过 `data-video` 属性引用 OSS URL
 
 ---
 
 ## 📱 响应式断点
 
-| 设备 | 宽度 | 布局 |
-|------|------|------|
-| 桌面 | >1024px | 4列网格 |
-| 平板 | 768-1024px | 3列网格 |
-| 手机 | <768px | 2列 → 1列 |
+| 设备 | 宽度 | 关键变化 |
+|------|------|---------|
+| 桌面 | >1024px | 完整布局，4 列网格 |
+| 平板 | 768-1024px | 缩小间距，3 列网格 |
+| 手机 | <768px | 纵向堆叠，2→1列，字体缩小 |
+| 超小屏 | <480px | 进一步精简 |
 
 ---
 
-## 🔧 常见问题
+## ⚡ 性能优化（已完成）
 
-**Q：视频在 Gitee Pages 上播放不了？**
-A：Gitee Pages 限制单文件 50MB，建议视频托管到阿里云 OSS。
+| 优化项 | 详情 | Commit |
+|--------|------|--------|
+| JS defer | 4 页面 script 加 defer，不阻塞渲染 | `ec201c8` |
+| 图片懒加载 | 58 张非首屏图片加 `loading="lazy"` | `ec201c8` |
+| GPU 合成 | will-change 覆盖所有核心动画元素 | `ec201c8` |
+| WebP 转换 | 17 张 PNG → WebP (58MB → 1.57MB, -97.3%) | `b438d8c` |
+| 视频压缩 | 背景视频 52.9MB → 28MB (-47%)，保留音频 | 待提交 |
 
-**Q：如何更新网站？**
-A：修改文件后执行：
+---
+
+## 📝 后续修改指南
+
+### 更换首页背景视频
+1. 将新视频放入 `video/` 目录
+2. 修改 `index.html` 第 47 行：
+```html
+<source src="video/你的视频.mp4" type="video/mp4">
+```
+3. **建议用 FFmpeg 压缩**（保留音频）：
+```bash
+ffmpeg -i 原始.mp4 -c:v libx264 -crf 24 -preset slow -c:a aac -b:a 128k 输出.mp4
+```
+
+### 添加动态作品
+编辑 `dynamic.html`，在 `<div class="video-grid">` 内添加：
+```html
+<div class="video-card" data-category="分类" data-video="OSS链接" data-title="标题" data-desc="描述" data-duration="00:30">
+    <img src="images/video-cover-封面.webp" alt="标题">
+</div>
+```
+同时上传视频到阿里云 OSS，封面图转 WebP 放入 `images/`。
+
+### 添加静态作品系列
+- HTML：`static.html` 的 `.series-grid` 内添加 series-card
+- JS：`js/static.js` 的 `seriesData` 对象中添加图片数组
+
+---
+
+## 🔧 本地开发
+
+```bash
+# 直接浏览器打开
+# 或用 VS Code Live Server 插件（推荐，支持 hot reload）
+```
+
+**更新网站流程：**
 ```bash
 git add .
 git commit -m "更新描述"
 git push
+# Cloudflare Pages 会自动构建部署
 ```
-然后到 Gitee Pages 服务页面点击「更新」。
-
-**Q：Logo 怎么换？**
-A：替换 `images/logo.png` 文件，保持相同文件名。
-
----
-
-## 📂 素材准备清单
-
-- [ ] 首页背景视频（建议 <20MB 或放阿里云）
-- [x] 静态作品系列（已添加16个系列）
-- [ ] 动态作品视频（待添加）
-- [ ] 关于页面内容
 
 ---
 
 ## 📅 更新日志
 
-### v1.2 (2026-04-12)
-- 修复导航栏滚动固定问题
-- 统一静态/动态页面布局结构
-- 修复视频弹窗定位问题
-- 添加16个静态作品系列
+### v2.0 (2026-04-14)
+- 移动端全站响应式适配
+- 性能优化：JS defer、懒加载、GPU合成、WebP转换、视频压缩
+- 视频封面 PNG → WebP（体积缩减 97%）
+- 背景视频压缩并保留弹窗音频
 
-### v1.1 (2026-04-11)
+### v1.2 (2026-04-12)
+- 首页"关于我+莉娜"卡片区域缝合优化
+- 统一各页面视觉风格一致性
+
+### v1.1 (2026-04-11~12)
 - 首页视频轮播功能
 - 静态作品瀑布流布局
-- 系列展开面板交互
-- 响应式适配
+- 导航栏简化为"动态/静态/关于"
+- 16 个静态作品系列
 
 ### v1.0 (2026-04-10)
 - 初始版本上线
-- 基础页面结构
-- 赛博朋克视觉风格
-
----
-
-## 📂 素材准备清单
-
-- [ ] 首页背景视频（建议 <20MB 或放阿里云）
-- [ ] Logo 图片（PNG，透明背景）
-- [ ] 动态作品：视频文件 + 封面图（16:9）
-- [ ] 静态作品：系列封面 + 系列内图片
-
----
-
----
-
-## 🔄 更新日志
-
-### v1.1 (2026-04-12)
-- 首页视频区域改为轮播形式，支持缩略图切换
-- 静态作品区域改为瀑布流布局
-- 导航栏简化为"动态/静态/关于"
-- 关于页面暂时隐藏个人信息，待站酷内容整合
-
-### v1.0 (2026-04-11)
-- 初始版本上线
-- 完成首页、动态作品、静态作品、关于四个页面
-- 实现视频弹窗、图片系列展开等交互
-
----
-
-**创建日期**：2026-04-11  
-**版本**：v1.1
+- 赛博朋克视觉风格基础框架
