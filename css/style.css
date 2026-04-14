@@ -3650,3 +3650,90 @@ img {
     color: var(--magenta);
     text-shadow: 0 0 12px rgba(255, 0, 160, 0.4);
 }
+
+/* ===== GPU 合成优化 - will-change ===== */
+/* 页面转场动画 */
+.page-transition,
+.page-transition .rgb-split,
+.page-transition .rgb-split::before,
+.page-transition .rgb-split::after,
+.page-transition .tear-lines,
+.page-transition .tear-line,
+.page-transition .flash {
+    will-change: opacity, transform;
+}
+
+/* Hero 区域 */
+.hero-title.glitch,
+.hero-title.glitch::before,
+.hero-title.glitch::after {
+    will-change: transform, clip-path;
+}
+
+.bg-video {
+    will-change: transform;
+}
+
+/* 滚动指示器 */
+.scroll-indicator {
+    will-change: opacity, transform;
+}
+
+/* 莉娜背景色块流动 */
+.rina-bg {
+    will-change: background-position;
+}
+.rina-bg::before {
+    will-change: background-position;
+}
+
+/* 首页卡片顶部动画区 */
+.about-new-top,
+.about-new-top::before,
+.about-new-top::after {
+    will-change: background-position, transform, opacity, width;
+}
+
+/* Logo 故障动画 */
+.top-logo-img.main,
+.top-logo-img.cyan,
+.top-logo-img.magenta {
+    will-change: transform, filter, opacity;
+}
+
+/* 圆圈旋转 */
+.top-rina-circles::before,
+.top-rina-circles::after {
+    will-change: transform;
+}
+
+/* 扫描线 */
+.about-new-top .top-scanline::before,
+.about-new-top .top-scanline::after {
+    will-change: transform, left, top;
+}
+
+/* 星空闪烁 */
+.star {
+    will-change: opacity, transform, background;
+}
+
+/* 底部光晕脉冲 */
+.about-new-left::before,
+.about-new-left::after {
+    will-change: opacity, transform;
+}
+
+/* about.html 莉娜视觉区 */
+.rina-visual-section .rina-grid,
+.rina-visual-section .rina-stars,
+.rina-visual-section .rina-circles,
+.rina-visual-section .rina-lines,
+.rina-visual-section .rina-ripples {
+    will-change: transform;
+}
+
+/* 网格背景动画 */
+.rina-grid-mini {
+    will-change: transform;
+}
