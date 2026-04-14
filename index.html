@@ -635,6 +635,94 @@
                 .about-new-right-romaji { font-size: 11px; color: rgba(80,50,110,0.55); letter-spacing: 3px; text-transform: uppercase; margin-left: 8px; }
                 .about-new-right-badge { font-size: 10px; padding: 3px 10px; background: rgba(147,112,219,0.12); color: #5a3d8a; border: 1px solid rgba(147,112,219,0.22); border-radius: 4px; }
                 .about-new-right-desc { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.72); margin: 0; }
+
+                /* ========== 移动端适配 ========== */
+                @media (max-width: 768px) {
+                    /* 卡片整体 */
+                    .about-new-layout {
+                        border-radius: 8px;
+                    }
+
+                    /* 顶部动画区：降低高度 */
+                    .about-new-top {
+                        height: 100px;
+                    }
+
+                    /* 左侧 Logo 区：缩小尺寸 */
+                    .top-left-logo {
+                        width: 46%;
+                        left: 1%;
+                    }
+                    .top-logo-img {
+                        width: 80px;
+                        height: 80px;
+                    }
+
+                    /* 右侧莉娜区：缩小 */
+                    .top-right-rina {
+                        width: 46%;
+                        right: 1%;
+                        gap: 2px;
+                    }
+                    .top-rina-kanji {
+                        font-size: 18px;
+                        letter-spacing: 4px;
+                    }
+                    .top-rina-symbol {
+                        font-size: 24px;
+                    }
+
+                    /* 底部左右：改为纵向堆叠 */
+                    .about-new-bottom {
+                        flex-direction: column;
+                        min-height: auto;
+                    }
+
+                    /* 消除底部中间融合带（竖向时无意义） */
+                    .about-new-bottom::after {
+                        display: none;
+                    }
+
+                    /* 左侧卡片 */
+                    .about-new-left {
+                        padding: 20px;
+                    }
+
+                    /* 右侧卡片 */
+                    .about-new-right {
+                        padding: 20px;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    /* 顶部动画区更矮 */
+                    .about-new-top {
+                        height: 88px;
+                    }
+
+                    /* Logo 再缩小 */
+                    .top-logo-img {
+                        width: 66px;
+                        height: 66px;
+                    }
+
+                    /* 莉娜文字 */
+                    .top-rina-kanji {
+                        font-size: 16px;
+                        letter-spacing: 3px;
+                    }
+                    .top-rina-symbol {
+                        font-size: 20px;
+                    }
+
+                    /* 内容区域字体略小 */
+                    .about-new-left {
+                        padding: 16px;
+                    }
+                    .about-new-right {
+                        padding: 16px;
+                    }
+                }
             </style>
             <div class="about-section" style="padding: 0;">
                 <div style="max-width: none;">

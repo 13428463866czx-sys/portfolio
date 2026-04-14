@@ -6,9 +6,39 @@
 
 /* 页面头部 */
 .page-header {
-    padding: 120px 40px 40px;
+    padding: 140px 40px 50px;
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 页面头部背景流动效果 */
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse 60% 40% at 20% 30%, rgba(0, 255, 208, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 60% at 80% 70%, rgba(255, 0, 160, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(147, 112, 219, 0.05) 0%, transparent 50%);
+    animation: header-blob-flow 15s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes header-blob-flow {
+    0%, 100% {
+        background-position: 0% 0%, 100% 100%, 50% 50%;
+    }
+    33% {
+        background-position: 80% 20%, 20% 80%, 80% 20%;
+    }
+    66% {
+        background-position: 50% 100%, 50% 0%, 20% 80%;
+    }
 }
 
 .page-title {
@@ -21,6 +51,8 @@
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
 }
 
 .page-title .title-en {
@@ -33,6 +65,50 @@
 .page-title .title-cn {
     color: rgba(255, 255, 255, 0.9);
     font-weight: 600;
+}
+
+/* HUD 装饰 - 标题下方 */
+.page-header-hud {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-header-hud .hud-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 208, 0.5));
+}
+
+.page-header-hud .hud-corner {
+    width: 12px;
+    height: 12px;
+    border-right: 1px solid rgba(0, 255, 208, 0.4);
+    border-bottom: 1px solid rgba(0, 255, 208, 0.4);
+}
+
+.page-header-hud .hud-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.page-header-hud .hud-dots span {
+    width: 3px;
+    height: 3px;
+    background: rgba(0, 255, 208, 0.6);
+    border-radius: 50%;
+    animation: hud-dot-pulse 1.5s infinite;
+}
+
+.page-header-hud .hud-dots span:nth-child(2) { animation-delay: 0.2s; }
+.page-header-hud .hud-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes hud-dot-pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
 }
 
 /* 筛选标签 */
@@ -92,6 +168,43 @@
     position: relative;
     aspect-ratio: 16/9;
     overflow: hidden;
+}
+
+/* 卡片 HUD 角标 - hover 时显示 */
+.video-thumbnail::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid var(--cyan);
+    border-right: 2px solid var(--cyan);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.video-card:hover .video-thumbnail::before {
+    opacity: 1;
+}
+
+.video-thumbnail::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid var(--magenta);
+    border-left: 2px solid var(--magenta);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.video-card:hover .video-thumbnail::after {
+    opacity: 1;
 }
 
 .video-thumbnail img {
@@ -382,6 +495,55 @@
 
     .modal-info h3 {
         font-size: 18px;
+    }
+}
+
+/* 超小屏 (≤480px) */
+@media (max-width: 480px) {
+    .page-header {
+        padding: 80px 16px 20px;
+    }
+
+    .page-header h1 {
+        font-size: 22px;
+        letter-spacing: 3px;
+    }
+
+    .page-header p {
+        font-size: 12px;
+    }
+
+    .filter-tabs {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .filter-tab {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+
+    .video-grid-section {
+        padding: 30px 16px;
+    }
+
+    .video-card-info {
+        padding: 12px;
+    }
+
+    .video-card-info h3 {
+        font-size: 13px;
+    }
+
+    .page-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .page-num {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
     }
 }
 
