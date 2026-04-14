@@ -92,9 +92,10 @@ function initHeroSubtitle() {
     
     subtitle.style.cursor = 'pointer';
     subtitle.addEventListener('click', function() {
-        // 使用背景视频作为弹窗视频源
+        // 弹窗使用OSS高清版（data-modal标记的source），背景使用本地压缩版
         const bgVideo = document.querySelector('.bg-video');
-        const videoSrc = bgVideo?.querySelector('source')?.src || 'video/showreel-placeholder.mp4';
+        const modalSource = bgVideo?.querySelector('source[data-modal]');
+        const videoSrc = modalSource?.src || bgVideo?.querySelector('source')?.src || 'video/bg-showreel.mp4';
         
         modalVideo.innerHTML = `<source src="${videoSrc}" type="video/mp4">`;
         modalTitle.textContent = 'SHOWREEL 2026';

@@ -1,7 +1,7 @@
-# 视频文件（太大，走阿里云OSS）
-# 注意：showreel26.mp4 是首页背景视频，已压缩到53MB，可以上传Gitee
-# 其他大视频仍走阿里云OSS
-video/showreel-placeholder.mp4
+# 视频文件（走阿里云OSS或本地压缩版）
+# bg-showreel.mp4 是本地压缩背景视频(~7MB)，保留在仓库
+# 其他大视频走OSS，不上传Git
+video/bg-showreel-audio.mp4
 *.mov
 *.avi
 
@@ -18,3 +18,4 @@ Thumbs.db
 # 临时文件
 *.tmp
 *.temp
+video-compare.html
