@@ -1725,6 +1725,17 @@
         font-size: 32px;
     }
 
+    /* ── 区块标题：手机端统一间距 ── */
+    .block-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .block-title .title-en {
+        font-size: 12px;
+        margin-left: 8px;
+    }
+
     /* ── 关于我 Hero 区：横向 → 纵向堆叠 ── */
     .about-hero {
         flex-direction: column;
@@ -1734,20 +1745,50 @@
     /* Logo 区：占满宽度，高度收缩 */
     .about-logo {
         width: 100%;
-        min-height: 220px;
-        padding: 30px;
+        min-height: 200px;
+        padding: 30px 20px;
     }
 
     /* Logo 图片：从 550px 收缩到屏幕安全尺寸 */
     .about-logo img {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
     }
 
-    /* 文字区：占满宽度 */
+    /* 文字区：占满宽度，收紧内边距 */
     .about-content {
         width: 100%;
-        padding: 28px 24px;
+        padding: 24px 20px;
+    }
+
+    /* 标题区缩小 */
+    .header-title {
+        font-size: 24px;
+    }
+
+    .header-subtitle {
+        font-size: 12px;
+        letter-spacing: 4px;
+    }
+
+    .header-title-en {
+        font-size: 14px;
+    }
+
+    /* 技能网格：手机端单列，更易读 */
+    .about-skills {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .skill-item {
+        padding: 10px 14px;
+    }
+
+    /* 自我介绍字体微调 */
+    .about-bio {
+        font-size: 13.5px;
+        padding: 14px 0;
     }
 
     /* ── 莉娜 Hero 区：横向 → 纵向堆叠 ── */
@@ -1756,22 +1797,27 @@
         min-height: auto;
     }
 
-    /* 视觉区：占满宽度 */
+    /* 视觉区：占满宽度，紧凑高度 */
     .rina-visual {
         width: 100%;
-        min-height: 200px;
-        padding: 30px;
+        min-height: 180px;
+        padding: 25px 20px;
     }
 
     /* 莉娜 Logo 收缩 */
     .rina-logo {
-        width: 100px;
-        height: 100px;
+        width: 110px;
+        height: 110px;
+    }
+
+    /* 内容区：全宽 */
+    .rina-content {
+        width: 100%;
     }
 
     /* 内容内层 */
     .rina-content-inner {
-        padding: 24px 20px;
+        padding: 22px 18px;
     }
 
     /* 反向布局在移动端也堆叠 */
@@ -1782,6 +1828,72 @@
     /* 标题区域 */
     .rina-title {
         font-size: 18px;
+        flex-wrap: wrap;
+    }
+
+    .rina-romaji-title {
+        font-size: 12px;
+    }
+
+    /* 描述文字 */
+    .rina-desc {
+        font-size: 13.5px;
+        margin-bottom: 16px;
+    }
+
+    /* 特性网格：单列 */
+    .rina-features {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .rina-feature {
+        font-size: 12.5px;
+    }
+
+    /* 进度条区域 */
+    .rina-progress {
+        padding: 12px;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .progress-label {
+        width: 60px;
+        font-size: 11px;
+    }
+
+    .progress-status {
+        width: 45px;
+        font-size: 10px;
+    }
+
+    /* 应用场景 */
+    .rina-usecase {
+        padding: 10px 12px;
+        margin-bottom: 12px;
+    }
+
+    .usecase-text {
+        font-size: 12.5px;
+    }
+
+    /* 技术标签 */
+    .rina-tech {
+        gap: 6px;
+        margin-bottom: 16px;
+    }
+
+    .rina-tech .tech-tag {
+        padding: 4px 10px;
+        font-size: 10px;
+    }
+
+    /* AIGC 标注 */
+    .rina-aigc-note {
+        padding: 8px 12px;
+        margin-top: 12px;
     }
 
     /* 莉娜 block 间距收紧 */
@@ -1790,14 +1902,42 @@
         margin-bottom: 40px;
     }
 
+    /* 标题右对齐在手机端恢复正常（避免反向排版问题） */
+    .rina-title-right {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    /* badge 定位修正 */
+    .rina-badge {
+        position: relative;
+        top: auto;
+        right: auto;
+        display: inline-block;
+        margin-left: auto;
+        padding: 4px 12px 4px 24px;
+        font-size: 9px;
+    }
+
     /* 关于我 Hero block 标题间距 */
     .about-hero-block {
         margin-bottom: 30px;
     }
 
+    /* HUD 装饰在手机端隐藏 */
+    .hud-decoration {
+        display: none;
+    }
+
     /* 技能 tooltip 在移动端禁用（触摸设备无 hover） */
     .skill-item .skill-tooltip {
         display: none;
+    }
+
+    /* 站酷网格：手机端单列 */
+    .zcool-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 }
 
